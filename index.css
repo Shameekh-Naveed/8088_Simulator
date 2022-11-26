@@ -1,0 +1,256 @@
+*{
+    background-color: antiquewhite;
+}
+
+.main_div{
+    /* display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 15px; */
+}
+
+.mem_reg{
+    height: 46vw;
+    width: 27vw;
+}
+
+.reg_main{
+    background-color: white;
+    height: 35%;
+    width: 90%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.memory_main {
+    background-color: white;
+    height: 56%;
+    width: 90%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inp_trans{
+    width: 55vw;
+    height: 12vw;
+    /* border: 1px solid gray; */
+    position: fixed;
+    top: 0;
+    right: 7rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.input_main{
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 100%;
+    width: 30%;
+    background-color: white;
+}
+
+.trans_main{
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 100%;
+    width: 30%;
+    margin-left: 5rem;
+    background-color: white;
+}
+
+.buttons{
+    position: absolute;
+    margin: 1rem;
+    right: 0;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn{
+    background-color: gray;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    width: 10rem;
+    transition: 0.5s;
+}
+
+.btn:hover{
+    background-color: aqua;
+    color: black;
+}
+
+.sim_main{
+    background-color: white;
+    border: 1px solid gray;
+    bottom: 2rem;
+    right: 2rem;
+    position: fixed;
+    height: 62%;
+    width: 68%;
+    margin: 1rem;
+    border-radius: 10px;
+    background-image: linear-gradient(0deg, #647ef1 0%, #333969 79%);
+    
+}
+
+.table{
+    display: grid;
+    background-color: white;
+    grid-template-columns: 40% 40%;
+    gap: 1rem;
+    padding-left: 2rem;
+}
+
+.table-row{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.reg_num{
+    background-color: silver;
+    padding: 0.1rem;
+    width: 4rem;
+    border: 1px solid gray;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.col{
+    padding: 0.1rem;
+    background-color: silver;
+    width: 4rem;
+    border: 1px solid gray;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.mem-grid{
+    display: grid;
+    background-color: white;
+    grid-template-columns: 40% 40%;
+    gap: 1rem;
+    padding-left: 2rem;
+}
+
+.memSeg{
+    display: flex;
+    flex-direction: row;
+}
+
+.input_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input{
+    width: 80%;
+    height: 40%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 0.5rem
+}
+
+.trans_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.trans_text{
+    width: 80%;
+    height: 40%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: rgba(226, 226, 226, 0.384);
+    padding: 0.5rem
+}
+
+.processor{
+    background-color: rgb(87, 136, 209);
+    border: 1px solid rgb(136, 69, 7);
+    bottom: 9rem;
+    left: 2rem;
+    position: absolute;
+    height: 50%;
+    width: 42%;
+    margin: 1rem;
+    border-radius: 13px;
+    border-width: 3px;
+    background-image: linear-gradient(45deg, #d6761b 0%, #ecdd55 79%);
+}
+
+.datapath {
+    background-color: rgb(108, 231, 104);
+    border: 1px solid rgb(36, 87, 31);
+    bottom: 9rem;
+    left: 35rem;
+    position: absolute;
+    height: 50%;
+    width: 33%;
+    margin: 1rem;
+    /* border-radius: 2px; */
+    border-width: 2px;
+    transition: all 250ms 0ms cubic-bezier(0, 0, 1, 1);
+    background-blend-mode: overlay;
+    mix-blend-mode: normal;
+    border-radius: 16px;
+    background-image: linear-gradient(45deg, #571e48 0%, #A020F0 79%);
+}
+
+.memory-block{
+    background-color: rgb(185, 185, 185);
+    border: 1px solid rgb(63, 63, 63);
+    bottom: 1rem;
+    left: 2rem;
+    position: absolute;
+    height: 13%;
+    width: 89%;
+    margin: 1rem;
+    border-radius: 2px;
+    border-width: 3px;
+}
+
+.instructionregister{
+    background-color: rgb(100, 142, 145);
+    width: 5rem;
+    height: 4rem;
+    top: 4.4rem;
+    left: 1.7rem;
+    position: relative;
+    border-radius: 10px;
+    border-width: 10px;
+}
+.instructionregisterimg{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.pc-mem{
+    height: 10px;
+    width: 10px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
