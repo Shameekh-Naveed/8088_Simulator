@@ -15,6 +15,9 @@
   <script src="index.js"></script>
   <link rel="stylesheet" href="index.css" />
   <title>8086/8088 Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
@@ -137,18 +140,28 @@
       <div class="processor">
         <div class="controller"></div>
         <!-- Horizotnal ARROW -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pc-mem">
-          <path
-            d="M15.707 17.293a1 1 0 0 1 0 1.414l-3 3a1 1 0 0 1-1.416 0l-3-3a1 1 0 0 1 1.414-1.414L11 18.586V5.414L9.707 6.707a1 1 0 0 1-1.414-1.414l3-3a1 1 0 0 1 1.416 0l3 3a1 1 0 0 1-1.414 1.414L13 5.414v13.172l1.293-1.293a1 1 0 0 1 1.414 0z"
-            style="fill:#1c1b1e" />
-        </svg>
+        <!-- <img src="downarrbland.svg" class="filter-green"/> -->
         <div class="instructionregister">
           <div class="instructionregisterimg" style="background-image: url('./Screenshot_2022-11-25_213349-removebg-preview.png');"></div>
         </div>
-        <div class="programcounter"></div>
+        <div class="programcounter">
+          <div class="programcounterimg" style="background-image: url('./Screenshot_2022-11-25_213349-removebg-preview.png');"></div>
+        </div>
       </div>
-      <div class="datapath"></div>
+      <div class="datapath">
+        <div class="ALU-block"></div>
+        <div class="Registers-block"></div>
+      </div>
       <div class="memory-block"></div>
+      <div class="mem-pc-bus"></div>
+      <div class="pc-controller-bus"></div>
+      <div class="mem-ir-bus"></div>
+      <div class="ir-controller-bus"></div>
+      <div class="ALU-Registers-bus"></div>
+      <div class="mem-Registers-bus"></div>
+      <div class="proc-dp-bus"></div>
+      
+      
 
     </div>
 

@@ -1,6 +1,12 @@
 *{
-    background-color: antiquewhite;
+    background-color: #071124;
+    /* background-image: linear-gradient(45deg, #181c48 100%, #2b7793 %); */
+    --regmemcolour: #161f32; 
+    --inputtranscolour: #879fd3;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 16px;
 }
+
 
 .main_div{
     /* display: grid;
@@ -14,47 +20,63 @@
 }
 
 .reg_main{
-    background-color: white;
+    background-color: var(--regmemcolour);
     height: 35%;
     width: 90%;
-    border: 1px solid gray;
-    border-radius: 10px;
+    /* border: 12px solid rgb(42, 77, 110); */
+    border-radius: 1px;
     margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.reg_main h3{
+    background-color: transparent;
+    color: lightsteelblue;
 }
 
 .memory_main {
-    background-color: white;
-    height: 56%;
+    background-color: var(--regmemcolour);
+    height: 60%;
     width: 90%;
-    border: 1px solid gray;
-    border-radius: 10px;
+    /* border: 1px solid gray; */
+    /* border-radius: 10px; */
     margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.memory_main h3{
+    background-color: transparent;
+    color: lightsteelblue;
+}
+
 .inp_trans{
-    width: 55vw;
+    width: 56vw;
     height: 12vw;
     /* border: 1px solid gray; */
     position: fixed;
     top: 0;
-    right: 7rem;
+    right: 14rem;
     margin: 1rem;
     display: flex;
     flex-direction: row;
 }
 
 .input_main{
-    border: 1px solid gray;
-    border-radius: 10px;
+    /* border: 1px solid gray;
+    border-radius: 10px; */
     height: 100%;
     width: 30%;
-    background-color: white;
+    background-color: var(--in);
+}
+
+.input_main h3{
+    background-color: transparent;
+    color: lightsteelblue;
+    left:0px;
 }
 
 .trans_main{
@@ -64,6 +86,11 @@
     width: 30%;
     margin-left: 5rem;
     background-color: white;
+}
+
+.trans_main h3{
+    background-color: transparent;
+    color: lightsteelblue;
 }
 
 .buttons{
@@ -107,7 +134,7 @@
 
 .table{
     display: grid;
-    background-color: white;
+    background-color: var(--regmemcolour);
     grid-template-columns: 40% 40%;
     gap: 1rem;
     padding-left: 2rem;
@@ -123,25 +150,30 @@
     background-color: silver;
     padding: 0.1rem;
     width: 4rem;
-    border: 1px solid gray;
+    border: 3px solid rgb(42, 77, 110);
     text-align: center;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+    text-align: center;
+    color: rgb(67, 122, 149);
+    overflow: hidden;
 }
 
 .col{
     padding: 0.1rem;
-    background-color: silver;
+    /* background-color: silver; */
     width: 4rem;
-    border: 1px solid gray;
+    height: 1.3rem;
+    border: 3px solid rgb(42, 77, 110);
     text-align: center;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    color: rgb(67, 122, 149);
+    /* border-bottom-left-radius: 5px; */
+    /* border-top-left-radius: 5px; */
 }
 
 .mem-grid{
     display: grid;
-    background-color: white;
+    background-color: var(--regmemcolour);
     grid-template-columns: 40% 40%;
     gap: 1rem;
     padding-left: 2rem;
@@ -194,7 +226,7 @@
     margin: 1rem;
     border-radius: 13px;
     border-width: 3px;
-    background-image: linear-gradient(45deg, #d6761b 0%, #ecdd55 79%);
+    background-image: linear-gradient(45deg, #48a378 10%, #387d56 79%);
 }
 
 .datapath {
@@ -222,19 +254,32 @@
     left: 2rem;
     position: absolute;
     height: 13%;
-    width: 89%;
+    width: 83%;
     margin: 1rem;
     border-radius: 2px;
     border-width: 3px;
 }
 
+.controller{
+    background-color: rgb(100, 142, 145);
+    border: 1px solid rgb(63, 63, 63);
+    bottom: 7rem;
+    left: 2.7rem;
+    position: absolute;
+    height: 30%;
+    width:72%;
+    margin: 1rem;
+    border-radius: 10px;
+    border-width: 3px;
+}
+
 .instructionregister{
     background-color: rgb(100, 142, 145);
-    width: 5rem;
+    width: 8rem;
     height: 4rem;
-    top: 4.4rem;
-    left: 1.7rem;
-    position: relative;
+    top: 8rem;
+    left: 3.7rem;
+    position: absolute;
     border-radius: 10px;
     border-width: 10px;
 }
@@ -247,10 +292,146 @@
     position: relative;
     background-color: rgba(0, 0, 0, 0);
 }
+.programcounter{
+    background-color: rgb(100, 142, 145);
+    width: 8rem;
+    height: 4rem;
+    top: 8rem;
+    right: 3.7rem;
+    position: absolute;
+    border-radius: 10px;
+    border-width: 10px;
+}
+.programcounterimg{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #333969;
+    border-width: 10px;
+}
+
+.ALU-block{
+    background-color: rgb(100, 142, 145);
+    border: 1px solid rgb(63, 63, 63);
+    bottom: 6.1rem;
+    right: 3.6rem;
+    position: absolute;
+    height: 40%;
+    width:56%;
+    margin: 1rem;
+    border-radius: 10px;
+    border-width: 3px;
+}
+
+.Registers-block{
+    background-color: rgb(100, 142, 145);
+    border: 1px solid rgb(63, 63, 63);
+    bottom: 0.4rem;
+    right: 2.45rem;
+    position: absolute;
+    height: 27%;
+    width:66%;
+    margin: 1rem;
+    border-radius: 10px;
+    border-width: 3px;
+}
+
+.mem-pc-bus{
+    width: 0.7rem;
+    height: 6.6rem;
+    position: absolute;
+    top: 16.2rem;
+    left: 10rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-top: transparent;
+    border-bottom: transparent;
+}
+
+.pc-controller-bus{
+    width: 0.7rem;
+    height: 1.7rem;
+    position: absolute;
+    top: 10.5rem;
+    left: 10rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-top: transparent;
+    border-bottom: transparent;
+}
+
+.ir-controller-bus{
+    width: 0.7rem;
+    height: 1.7rem;
+    position: absolute;
+    top: 10.5rem;
+    left: 23rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-top: transparent;
+    border-bottom: transparent;
+}
+
+.mem-ir-bus{
+    width: 0.7rem;
+    height: 6.6rem;
+    position: absolute;
+    top: 16.2rem;
+    left: 23rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-top: transparent;
+    border-bottom: transparent;
+}
+
+.ALU-Registers-bus{
+    width: 0.7rem;
+    height: 1.7rem;
+    position: absolute;
+    right: 17.7rem;
+    bottom: 15.6rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-top: transparent;
+    border-bottom: transparent;
+}
+
+.mem-Registers-bus{
+    width: 0.7rem;
+    height: 5.8rem;
+    position: absolute;
+    top: 17rem;
+    right: 17.7rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-top: transparent;
+    border-bottom: transparent;
+}
+
+.proc-dp-bus{
+    width: 5.4rem;
+    height: 0.7rem;
+    position: absolute;
+    right: 29.2rem;
+    bottom: 19rem;
+    background-color: transparent;
+    border: 4px solid black;
+    border-left: transparent;
+    border-right: transparent;
+}
 
 .pc-mem{
     height: 10px;
     width: 10px;
-    background-color: rgba(0, 0, 0, 0);
+    color: transparent;   
+}
+
+.filter-green{
+    /* filter: invert(48%) sepia(79%) saturate(100%) hue-rotate(86deg) brightness(100%) contrast(50%); */
+    background-color: transparent;
 }
 
