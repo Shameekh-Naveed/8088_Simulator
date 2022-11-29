@@ -12,6 +12,8 @@
     /* display: grid;
     grid-template-columns: 30% 70%;
     gap: 15px; */
+    display: grid;
+    grid-template-columns: 30% 70%;
 }
 
 .mem_reg{
@@ -41,8 +43,6 @@
     position: relative;
     font-family: 'Oswald', sans-serif;
     text-shadow:/*2px 2px 0px #2e317c,*/ 1px 1px 2px rgb(130, 186, 239), -1px -1px 2px rgb(130, 186, 239);
-    text-shadow: 
-    text-shadow: 
 
 }
 
@@ -149,9 +149,9 @@
     border: 1px solid gray;
     bottom: 2rem;
     right: 2rem;
-    position: fixed;
+    /* position: fixed;
     height: 62%;
-    width: 68%;
+    width: 68%; */
     margin: 1rem;
     border-radius: 10px;
     background-image: linear-gradient(0deg, #647ef1 0%, #333969 79%);
@@ -247,7 +247,7 @@
     border: 1px solid rgb(136, 69, 7);
     bottom: 9rem;
     left: 2rem;
-    position: absolute;
+    position: relative;
     height: 50%;
     width: 42%;
     margin: 1rem;
@@ -261,7 +261,7 @@
     border: 1px solid rgb(36, 87, 31);
     bottom: 9rem;
     left: 35rem;
-    position: absolute;
+    position: relative;
     height: 50%;
     width: 33%;
     margin: 1rem;
@@ -279,7 +279,7 @@
     border: 1px solid rgb(63, 63, 63);
     bottom: 1rem;
     left: 2rem;
-    position: absolute;
+    position: relative;
     height: 13%;
     width: 83%;
     margin: 1rem;
@@ -298,7 +298,7 @@
     border: 1px solid rgb(63, 63, 63);
     bottom: 7rem;
     left: 2.7rem;
-    position: absolute;
+    position: relative;
     height: 30%;
     width:72%;
     margin: 1rem;
@@ -322,7 +322,7 @@
     height: 4rem;
     top: 8rem;
     right: 3.7rem;
-    position: absolute;
+    position: relative;
     border-radius: 10px;
     border-width: 10px;
     transition: 0.3s;
@@ -348,7 +348,7 @@
     height: 4rem;
     top: 8rem;
     right: 3.7rem;
-    position: absolute;
+    position: relative;
     border-radius: 10px;
     border-width: 10px;
 }
@@ -369,7 +369,7 @@
     border: 1px solid rgb(63, 63, 63);
     bottom: 6.1rem;
     right: 3.6rem;
-    position: absolute;
+    position: relative;
     height: 40%;
     width:56%;
     margin: 1rem;
@@ -382,7 +382,7 @@
     border: 1px solid rgb(63, 63, 63);
     bottom: 0.4rem;
     right: 2.45rem;
-    position: absolute;
+    position: relative;
     height: 27%;
     width:66%;
     margin: 1rem;
@@ -393,7 +393,7 @@
 .mem-pc-bus{
     width: 0.7rem;
     height: 6.6rem;
-    position: absolute;
+    position: relative;
     top: 16.2rem;
     left: 10rem;
     background-color: transparent;
@@ -405,7 +405,7 @@
 .pc-controller-bus{
     width: 0.7rem;
     height: 1.7rem;
-    position: absolute;
+    position: relative;
     top: 10.5rem;
     left: 10rem;
     background-color: transparent;
@@ -417,7 +417,7 @@
 .ir-controller-bus{
     width: 0.7rem;
     height: 1.7rem;
-    position: absolute;
+    position: relative;
     top: 10.5rem;
     left: 23rem;
     background-color: transparent;
@@ -429,7 +429,7 @@
 .mem-ir-bus{
     width: 0.7rem;
     height: 6.6rem;
-    position: absolute;
+    position: relative;
     top: 16.2rem;
     left: 23rem;
     background-color: transparent;
@@ -441,7 +441,7 @@
 .ALU-Registers-bus{
     width: 0.7rem;
     height: 1.7rem;
-    position: absolute;
+    position: relative;
     right: 17.7rem;
     bottom: 15.6rem;
     background-color: transparent;
@@ -453,7 +453,7 @@
 .mem-Registers-bus{
     width: 0.7rem;
     height: 5.8rem;
-    position: absolute;
+    position: relative;
     top: 17rem;
     right: 17.7rem;
     background-color: transparent;
@@ -465,7 +465,7 @@
 .proc-dp-bus{
     width: 5.4rem;
     height: 0.7rem;
-    position: absolute;
+    position: relative;
     right: 29.2rem;
     bottom: 19rem;
     background-color: transparent;
@@ -480,7 +480,7 @@
     height: 4rem;
     top: 8rem;
     left: 3.7rem;
-    position: absolute;
+    position: relative;
     border-radius: 10px;
     border-width: 10px;
     transition: 0.3s;
@@ -508,7 +508,7 @@
     border: 1px solid rgb(63, 63, 63);
     bottom: 6.1rem;
     right: 3.6rem;
-    position: absolute;
+    position: relative;
     height: 40%;
     width:56%;
     margin: 1rem;
@@ -527,7 +527,7 @@
     border: 1px solid rgb(63, 63, 63);
     bottom: 0.4rem;
     right: 2.45rem;
-    position: absolute;
+    position: relative;
     height: 27%;
     width:66%;
     margin: 1rem;
@@ -544,7 +544,7 @@
 .mem-pc-bus{
     width: 0.7rem;
     height: 6.6rem;
-    position: absolute;
+    position: relative;
     top: 16.2rem;
     left: 10rem;
     background-color: rgba(133, 133, 133, 0.514);
@@ -577,7 +577,7 @@
 .ir-controller-bus{
     width: 0.7rem;
     height: 1.7rem;
-    position: absolute;
+    position: relative;
     top: 10.5rem;
     left: 23rem;
     background-color: rgba(133, 133, 133, 0.514);
@@ -596,7 +596,7 @@
 .mem-ir-bus{
     width: 0.7rem;
     height: 6.6rem;
-    position: absolute;
+    position: relative;
     top: 16.2rem;
     left: 23rem;
     background-color: rgba(133, 133, 133, 0.514);
@@ -613,7 +613,7 @@
 .ALU-Registers-bus{
     width: 0.7rem;
     height: 1.7rem;
-    position: absolute;
+    position: relative;
     right: 17.7rem;
     bottom: 15.6rem;
     background-color: rgba(133, 133, 133, 0.514);
@@ -633,7 +633,7 @@
 .mem-Registers-bus{
     width: 0.7rem;
     height: 5.8rem;
-    position: absolute;
+    position: relative;
     top: 17rem;
     right: 17.7rem;
     background-color: rgba(133, 133, 133, 0.514);
@@ -654,7 +654,7 @@
 .proc-dp-bus{
     width: 5.4rem;
     height: 0.7rem;
-    position: absolute;
+    position: relative;
     right: 29.2rem;
     bottom: 19rem;
     background-color: rgba(133, 133, 133, 0.514);

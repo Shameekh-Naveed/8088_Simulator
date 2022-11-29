@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+}
+/* body{
+    max-height: 100vh;
+    max-width: 100vw;
+} */
+.div_main {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  height: 97vh;
+}
+
+.reg_part {
+  background-color: aqua;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sim_part {
+  background-color: pink;
+}
+
+.reg_main {
+  background-color: var(--regmemcolour);
+  height: 35%;
+  width: 90%;
+  border: 12px solid rgb(42, 77, 110);
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.table {
+  display: grid;
+  background-color: var(--regmemcolour);
+  grid-template-columns: 40% 40%;
+}
+
+.table-row {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.input_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inp_trans {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.input {
+  width: 80%;
+  height: 40%;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.trans_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trans_text {
+  width: 80%;
+  height: 40%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+.sim_main {
+  display: flex;
+  /* align-items: space-between; */
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+  /* background-color: white; */
+  border: 1px solid gray;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  /* background-image: linear-gradient(0deg, #647ef1 23%, #333969 79%);   */
+}
+
+.processor {
+  background-color: rgb(87, 136, 209);
+  border: 1px solid rgb(136, 69, 7);
+  height: 23rem;
+  width: 25rem;
+  border-radius: 13px;
+  border-width: 3px;
+  background-image: linear-gradient(45deg, #48a378 10%, #387d56 79%);
+  margin-top: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.datapath {
+  background-color: rgb(108, 231, 104);
+  border: 1px solid rgb(36, 87, 31);
+  border-width: 2px;
+  border-radius: 16px;
+  width: 15rem;
+  height: 15rem;
+  background-image: linear-gradient(45deg, #571e48 0%, #a020f0 79%);
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.memory_main {
+  display: flex;
+  background-color: var(--regmemcolour);
+  border: 2px solid black;
+  height: max-content;
+  /* align-self: center; */
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  width: auto;
+}
+
+.mem-row {
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.memSeg {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: .25rem;
+  /* justify-content: space-between; */
+}
+
+.controller {
+  background-color: rgb(100, 142, 145);
+  border: 1px solid rgb(63, 63, 63);
+  margin: 1rem;
+  height: 5rem;
+  border-radius: 10px;
+  border-width: 3px;
+  transition: 0.3s;
+  width: 100%;
+}
+.controller h3 {
+  background-color: transparent;
+  font-family: "Oswald", sans-serif;
+}
+
+.controller.controller-glow {
+  box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+.ir_and_pc {
+  /* margin: 1rem; */
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: .5rem;
+}
+
+.instructionregister {
+  background-color: rgb(100, 142, 145);
+  width: 8rem;
+  height: 4rem;
+  border-radius: 10px;
+  border-width: 10px;
+  transition: 0.3s;
+}
+
+.instructionregister.instructionregister-glow {
+  box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+.instructionregisterimg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.programcounter {
+  background-color: rgb(100, 142, 145);
+  width: 8rem;
+  height: 4rem;
+  border-radius: 10px;
+  border-width: 10px;
+}
+.programcounterimg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: #333969;
+  border-width: 10px;
+}
