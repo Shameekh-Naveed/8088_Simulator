@@ -12,7 +12,6 @@
 }
 
 .reg_part {
-  background-color: aqua;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -21,7 +20,7 @@
 }
 
 .sim_part {
-  background-color: pink;
+
 }
 
 .reg_main {
@@ -93,7 +92,6 @@
   align-content: space-between;
   flex-wrap: wrap;
   /* background-color: white; */
-  border: 1px solid gray;
   height: 100%;
   width: 100%;
   border-radius: 10px;
@@ -113,18 +111,10 @@
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-}
-
-.datapath {
-  background-color: rgb(108, 231, 104);
-  border: 1px solid rgb(36, 87, 31);
-  border-width: 2px;
-  border-radius: 16px;
-  width: 15rem;
-  height: 15rem;
-  background-image: linear-gradient(45deg, #571e48 0%, #a020f0 79%);
-  margin-top: 1rem;
-  margin-right: 1rem;
+  background-image: url('./bg.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .memory_main {
@@ -181,7 +171,7 @@
   gap: 4rem;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: .5rem;
+  margin-bottom: 3rem;
 }
 
 .instructionregister {
@@ -224,4 +214,120 @@
   background-color: rgba(0, 0, 0, 0);
   border-color: #333969;
   border-width: 10px;
+}
+
+.datapath {
+  background-color: rgb(108, 231, 104);
+  border: 1px solid rgb(36, 87, 31);
+  border-width: 2px;
+  border-radius: 16px;
+  width: 25rem;
+  height: 23rem;
+  background-image: linear-gradient(45deg, #571e48 0%, #a020f0 79%);
+  margin-top: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-image: url('./bg.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ALU-block {
+  background-color: rgb(100, 142, 145);
+  border: 1px solid rgb(63, 63, 63);
+  height: 5rem;
+  width: 90%;
+  margin: 1rem;
+  border-radius: 10px;
+  border-width: 3px;
+}
+
+.Registers-block {
+  background-color: rgb(100, 142, 145);
+  border: 1px solid rgb(63, 63, 63);
+  height: 27%;
+  width: 90%;
+  margin: 1rem;
+  border-radius: 10px;
+  border-width: 3px;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  gap: 2rem;
+}
+
+.R0{
+  width: 8rem;
+  height: 4rem;
+  background-color: #571e48;
+  margin-top: auto;
+  margin-left: auto;
+  border-radius: 5px;
+}
+
+.R1 {
+  width: 8rem;
+  height: 4rem;
+  background-color: #571e48;
+  margin-top: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+.testtwo {
+  margin: 0;
+  padding: 0;
+  margin: auto;
+}
+
+.test {
+  width: 300px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.test .monitor-wrapper {
+  background: #050321;
+  width: 300px;
+  height: 80px;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.test .monitor-wrapper .monitor {
+  width: 270px;
+  height: 50px;
+  background-color: #344151;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: inset 0px 5px 10px 2px rgba(0, 0, 0, 0.3);
+}
+
+.test .monitor-wrapper .monitor p {
+  font-family: 'VT323', monospace;
+  font-size: 44px;
+  position: relative;
+  display: inline-block;
+  animation: move 5s infinite linear;
+  color: #24d158;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes move {
+  from {
+    left: 400px;
+  }
+
+  to {
+    left: -450px;
+  }
 }
