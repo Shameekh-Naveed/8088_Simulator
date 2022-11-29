@@ -3,7 +3,7 @@
     /* background-image: linear-gradient(45deg, #181c48 100%, #2b7793 %); */
     --regmemcolour: #161f32; 
     --inputtranscolour: #879fd3;
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
 }
 
@@ -15,8 +15,8 @@
 }
 
 .mem_reg{
-    height: 46vw;
-    width: 27vw;
+    height: 46%; 
+    width: 27%;
 }
 
 .reg_main{
@@ -28,12 +28,22 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .reg_main h3{
     background-color: transparent;
     color: lightsteelblue;
+    font-size: 23px;
+    left: 10%;
+    top:3%;
+    /* top:3%; */
+    position: relative;
+    font-family: 'Oswald', sans-serif;
+    text-shadow:/*2px 2px 0px #2e317c,*/ 1px 1px 2px rgb(130, 186, 239), -1px -1px 2px rgb(130, 186, 239);
+    text-shadow: 
+    text-shadow: 
+
 }
 
 .memory_main {
@@ -45,12 +55,17 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .memory_main h3{
     background-color: transparent;
     color: lightsteelblue;
+    font-size: 23px;
+    position: relative;
+    left: 10%;
+    top:3%;
+    font-family: 'Oswald', sans-serif;
 }
 
 .inp_trans{
@@ -67,23 +82,30 @@
 
 .input_main{
     /* border: 1px solid gray;
-    border-radius: 10px; */
-    height: 100%;
+    background-color: white; */
+    border-radius: 7px;
+    height: 95%;
     width: 30%;
-    background-color: var(--in);
+    top: 4%;
+    position: relative;
 }
 
 .input_main h3{
     background-color: transparent;
     color: lightsteelblue;
-    left:0px;
+    right: 36%;
+    position: relative;
+    font-size: 20px;
 }
 
 .trans_main{
     border: 1px solid gray;
-    border-radius: 10px;
-    height: 100%;
+    border-radius: 7px;
+    height: 95%;
     width: 30%;
+    top: 4%;
+    right:5%;
+    position: relative;
     margin-left: 5rem;
     background-color: white;
 }
@@ -91,12 +113,15 @@
 .trans_main h3{
     background-color: transparent;
     color: lightsteelblue;
+    right: 29%;
+    position: relative;
+    font-size: 20px;
 }
 
 .buttons{
     position: absolute;
     margin: 1rem;
-    right: 0;
+    right: 7%;
     top: 20%;
     display: flex;
     flex-direction: column;
@@ -111,10 +136,11 @@
     border: none;
     width: 10rem;
     transition: 0.5s;
+    font-family: 'Rubik Microbe', cursive;
 }
 
 .btn:hover{
-    background-color: aqua;
+    background-color: rgb(44, 232, 75);
     color: black;
 }
 
@@ -163,8 +189,9 @@
     padding: 0.1rem;
     /* background-color: silver; */
     width: 4rem;
-    height: 1.3rem;
-    border: 3px solid rgb(42, 77, 110);
+    height: 1.5rem;
+    border-top: 3px solid rgb(42, 77, 110);
+    border-left: 3px solid rgb(42, 77, 110);
     text-align: center;
     color: rgb(67, 122, 149);
     /* border-bottom-left-radius: 5px; */
@@ -258,7 +285,13 @@
     margin: 1rem;
     border-radius: 2px;
     border-width: 3px;
+    transition: 0.3s;
 }
+
+.memory-block.memory-block-glow{
+    box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
 
 .controller{
     background-color: rgb(100, 142, 145);
@@ -271,18 +304,35 @@
     margin: 1rem;
     border-radius: 10px;
     border-width: 3px;
+    transition: 0.3s;
+}
+.controller h3{
+    background-color: transparent;
+    font-family: 'Oswald', sans-serif;    
 }
 
-.instructionregister{
+.controller.controller-glow{
+    box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+
+.instructionregister {
     background-color: rgb(100, 142, 145);
     width: 8rem;
     height: 4rem;
     top: 8rem;
-    left: 3.7rem;
+    right: 3.7rem;
     position: absolute;
     border-radius: 10px;
     border-width: 10px;
+    transition: 0.3s;
 }
+
+.instructionregister.instructionregister-glow{
+    box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+
 .instructionregisterimg{
     background-position: center;
     background-repeat: no-repeat;
@@ -424,14 +474,270 @@
     border-right: transparent;
 }
 
+.programcounter {
+    background-color: rgb(100, 142, 145);
+    width: 8rem;
+    height: 4rem;
+    top: 8rem;
+    left: 3.7rem;
+    position: absolute;
+    border-radius: 10px;
+    border-width: 10px;
+    transition: 0.3s;
+}
+
+.programcounter.programcounter-glow{
+    box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+
+.programcounterimg{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #333969;
+    border-width: 10px;
+}
+
+.ALU-block{
+    background-color: rgb(100, 142, 145);
+    border: 1px solid rgb(63, 63, 63);
+    bottom: 6.1rem;
+    right: 3.6rem;
+    position: absolute;
+    height: 40%;
+    width:56%;
+    margin: 1rem;
+    border-radius: 10px;
+    border-width: 3px;
+    transition: 0.3s;
+}
+
+.ALU-block.ALU-block-glow{
+    box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+
+.Registers-block{
+    background-color: rgb(100, 142, 145);
+    border: 1px solid rgb(63, 63, 63);
+    bottom: 0.4rem;
+    right: 2.45rem;
+    position: absolute;
+    height: 27%;
+    width:66%;
+    margin: 1rem;
+    border-radius: 10px;
+    border-width: 3px;
+    transition: 0.3s;
+}
+
+.Registers-block.Registers-block-glow{
+    box-shadow: 0 0 10px 5px rgb(63, 63, 63);
+}
+
+
+.mem-pc-bus{
+    width: 0.7rem;
+    height: 6.6rem;
+    position: absolute;
+    top: 16.2rem;
+    left: 10rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+
+.mem-pc-bus.mem-pc-bus-down-fill {
+    box-shadow: inset 0 6.6rem 0 0 white;
+}
+
+.pc-controller-bus{
+    width: 0.7rem;
+    height: 1.7rem;
+    position: absolute;
+    top: 10.5rem;
+    left: 10rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+.pc-controller-bus.pc-controller-bus-down-fill{
+    box-shadow: inset 0 1.7rem 0 0 white;
+}
+
+.ir-controller-bus{
+    width: 0.7rem;
+    height: 1.7rem;
+    position: absolute;
+    top: 10.5rem;
+    left: 23rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    /* border-top: transparent;
+    border-bottom: transparent; */
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+
+.ir-controller-bus.ir-controller-bus-up-fill{
+    box-shadow: inset 0 -1.7rem 0 0 white;
+}
+
+.mem-ir-bus{
+    width: 0.7rem;
+    height: 6.6rem;
+    position: absolute;
+    top: 16.2rem;
+    left: 23rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+
+.mem-ir-bus.mem-ir-bus-up-fill{
+    box-shadow: inset 0 -6.6rem 0 0 white;
+}
+
+.ALU-Registers-bus{
+    width: 0.7rem;
+    height: 1.7rem;
+    position: absolute;
+    right: 17.7rem;
+    bottom: 15.6rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+
+.ALU-Registers-bus.ALU-Registers-bus-up-fill{
+    box-shadow: inset 0 -1.7rem 0 0 white;
+}
+.ALU-Registers-bus.ALU-Registers-bus-down-fill {
+    box-shadow: inset 0 1.7rem 0 0 white;
+}
+
+.mem-Registers-bus{
+    width: 0.7rem;
+    height: 5.8rem;
+    position: absolute;
+    top: 17rem;
+    right: 17.7rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+
+.mem-Registers-bus.mem-Registers-bus-down-fill{
+    box-shadow: inset 0 5.8rem 0 0 white;
+}
+.mem-Registers-bus.mem-Registers-bus-up-fill {
+    box-shadow: inset 0 -5.8rem 0 0 white;
+}
+
+
+.proc-dp-bus{
+    width: 5.4rem;
+    height: 0.7rem;
+    position: absolute;
+    right: 29.2rem;
+    bottom: 19rem;
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
+}
+
+.proc-dp-bus.proc-dp-bus-left-fill{
+    box-shadow: inset -5.4rem 0 0 0 white;
+}
+.proc-dp-bus.proc-dp-bus-right-fill {
+    box-shadow: inset 5.4rem 0 0 0 white;
+}
+
+
+
+/* IDK what this is. Safvi made this */
+/*Safvi here; im p sure this was supposed to be an arrow? idk lmao*/
 .pc-mem{
     height: 10px;
     width: 10px;
-    color: transparent;   
+    background-color: rgba(133, 133, 133, 0.514);
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 10px;
+    transition: ease-out 0.5s;
+    box-shadow: inset 0 0 0 0 white;
 }
 
-.filter-green{
-    /* filter: invert(48%) sepia(79%) saturate(100%) hue-rotate(86deg) brightness(100%) contrast(50%); */
-    background-color: transparent;
+   /* * {
+    margin: 0;
+    padding: 0; } */
+  
+  body {
+    background: #C2BEB2;
+ }
+  
+  .testtwo {
+    position: absolute;
+    top: -80%;
+    left: 80%;
+    right: 0%;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    margin: auto; }
+  
+  .test {
+    width: 270px;
+    height: 100px;
+    background-color: #d4e5ff; 
 }
-
+    .test .monitor-wrapper {
+      background: #050321;
+      width: 250px;
+      height: 80px;
+      position: fixed;
+      box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3); 
+    }
+      .test .monitor-wrapper .monitor {
+        width: 220px;
+        height: 50px;
+        position: fixed;
+        background-color: #344151;
+        overflow: hidden;
+        white-space: nowrap;
+        box-shadow: inset 0px 5px 10px 2px rgba(0, 0, 0, 0.3); 
+    }
+        .test .monitor-wrapper .monitor p {
+          font-family: 'VT323', monospace;
+          font-size: 44px;
+          position: relative;
+          display: inline-block;
+          animation: move 5s infinite linear;
+          color: #24d158; 
+          margin: 0;
+          padding: 0;
+        }
+  
+  @keyframes move {
+    from {
+      left: 400px; }
+    to {
+      left: -450px; } }
+  
