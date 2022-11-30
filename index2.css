@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  /* box-sizing: border-box; */
 }
 /* body{
     max-height: 100vh;
@@ -33,7 +34,7 @@
 }
 
 .logo_main {
-  width: 300px;
+  width: 290px;
   height: 50px;
   border: 10px solid rgb(0, 0, 0, 0.6);
   box-shadow: inset 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
@@ -139,12 +140,6 @@
   border-bottom-right-radius: 5px;
 }
 
-.input_main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .inp_trans {
   width: 90%;
   height: 15rem;
@@ -158,25 +153,39 @@
   font-family: 'Raleway', sans-serif;
 }
 
+.input_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .input {
-  width: 80%;
-  height: 40%;
+  width: 70%;
+  height: 1rem;
   background-color: white;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 0.5rem;
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
 }
 
 .trans_main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+  width: 100%;
+}
+
+.trans_main h3{
+  margin-left: 12%;
+  text-align: left;
 }
 
 .trans_text {
-  width: 80%;
-  height: 40%;
+  align-self: center;
+  width: 70%;
+  height: 1rem;
   border: 1px solid grey;
   border-radius: 5px;
   background-color: white;
@@ -374,4 +383,26 @@
   /* margin-top: 0;
   margin-right: auto; */
   border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  border: 0px solid;
+  padding: 0.5rem 1rem;
+  font-family: 'Raleway', sans-serif;
+  border-radius: 0.75rem;
+  background-color: white;
+  cursor: pointer;
+  background-color: rgb(255, 153, 0);
+  font-size:medium;
+  color: white;
+  transition-duration: 300ms;
+}
+.btn:hover {
+  background-color: rgb(209, 143, 0);
+  transition-duration: 300ms;
 }
