@@ -20,9 +20,7 @@
   /* gap: 4rem; */
 }
 
-.sim_part {
 
-}
 
 .reg_main {
   background-color: var(--regmemcolour);
@@ -95,28 +93,29 @@
   flex-wrap: wrap;
   /* background-color: white; */
   height: 100%;
-  width: 100%;
+  max-width: 100%;
   border-radius: 10px;
+  padding: 0 1rem;
   /* background-image: linear-gradient(0deg, #647ef1 23%, #333969 79%);   */
 }
 
 .processor {
-  background-color: rgb(87, 136, 209);
+  /* background-color: rgb(87,  136, 209); */
   border: 1px solid rgb(136, 69, 7);
   height: 23rem;
   width: 25rem;
   border-radius: 13px;
   border-width: 3px;
-  background-image: linear-gradient(45deg, #48a378 10%, #387d56 79%);
+  /* background-image: linear-gradient(45deg, #48a378 10%, #387d56 79%); */
   margin-top: 1rem;
   margin-left: 1rem;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  background-image: url('./2.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  /* background-image: url("./2.gif"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .memory_main {
@@ -132,10 +131,7 @@
   width: auto;
 }
 
-.mem-row {
-  /* display: flex; */
-  /* flex-direction: row; */
-}
+
 
 .memSeg {
   border: 1px solid black;
@@ -143,19 +139,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: .25rem;
+  margin: 0.25rem;
+  /* padding-right: 20rem; */
+  /* padding: 0 1rem; */
   /* justify-content: space-between; */
 }
+
 
 .controller {
   background-color: rgb(100, 142, 145);
   border: 1px solid rgb(63, 63, 63);
   margin: 1rem;
-  height: 5rem;
+  height: 8rem;
   border-radius: 10px;
   border-width: 3px;
   transition: 0.3s;
-  width: 100%;
+  width: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
 }
 .controller h3 {
   background-color: transparent;
@@ -178,8 +180,8 @@
 
 .instructionregister {
   background-color: rgb(100, 142, 145);
-  width: 8rem;
-  height: 4rem;
+  width: 4rem;
+  height: 3rem;
   border-radius: 10px;
   border-width: 10px;
   transition: 0.3s;
@@ -201,8 +203,8 @@
 
 .programcounter {
   background-color: rgb(100, 142, 145);
-  width: 8rem;
-  height: 4rem;
+  width: 12rem;
+  height: 3rem;
   border-radius: 10px;
   border-width: 10px;
 }
@@ -223,7 +225,7 @@
   border: 1px solid rgb(36, 87, 31);
   border-width: 2px;
   border-radius: 16px;
-  width: 25rem;
+  width: 20rem;
   height: 23rem;
   background-image: linear-gradient(45deg, #571e48 0%, #a020f0 79%);
   margin-top: 1rem;
@@ -231,51 +233,53 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-image: url('./2.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("./2.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .ALU-block {
   background-color: rgb(100, 142, 145);
   border: 1px solid rgb(63, 63, 63);
-  height: 5rem;
-  width: 90%;
+  height: 8rem;
+  width: 8rem;
   margin: 1rem;
   border-radius: 10px;
   border-width: 3px;
 }
 
 .Registers-block {
-  background-color: rgb(100, 142, 145);
-  border: 1px solid rgb(63, 63, 63);
-  height: 27%;
-  width: 90%;
+  /* background-color: rgb(100, 142, 145); */
+  /* border: 1px solid rgb(63, 63, 63); */
+  /* border-width: 3px; */
+  height: 4rem;
+  width: 12rem;
   margin: 1rem;
   border-radius: 10px;
-  border-width: 3px;
   display: flex;
   flex-direction: row;
   padding: 1rem;
-  gap: 2rem;
+  gap: 3rem;
 }
 
-.R0{
-  width: 8rem;
+.R0 {
+  width: 4rem;
   height: 4rem;
   background-color: #571e48;
   margin-top: auto;
+  margin-bottom: auto;
   margin-left: auto;
   border-radius: 5px;
 }
 
 .R1 {
-  width: 8rem;
+  width: 4rem;
   height: 4rem;
   background-color: #571e48;
-  /* margin-top: 0;
-  margin-right: auto; */
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
   border-radius: 5px;
 }
 
@@ -292,7 +296,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 .test .monitor-wrapper {
   background: #050321;
@@ -314,7 +317,7 @@
 }
 
 .test .monitor-wrapper .monitor p {
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
   font-size: 44px;
   position: relative;
   display: inline-block;
@@ -332,4 +335,9 @@
   to {
     left: -450px;
   }
+}
+
+
+.dataline{
+  position: absolute;
 }
