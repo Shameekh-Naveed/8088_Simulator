@@ -17,6 +17,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* gap: 4rem; */
 }
 
 .sim_part {
@@ -27,10 +28,11 @@
   background-color: var(--regmemcolour);
   height: 35%;
   width: 90%;
-  border: 12px solid rgb(42, 77, 110);
-  border-radius: 1px;
+  /* border: 2px solid rgb(42, 77, 110); */
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
+  box-shadow: 10px 10px 21px -4px rgba(0, 0, 0, 0.52);
   /* align-items: center; */
 }
 
@@ -111,7 +113,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  background-image: url('./bg.webp');
+  background-image: url('./2.gif');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -229,7 +231,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-image: url('./bg.webp');
+  background-image: url('./2.gif');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -272,8 +274,8 @@
   width: 8rem;
   height: 4rem;
   background-color: #571e48;
-  margin-top: auto;
-  margin-right: auto;
+  /* margin-top: 0;
+  margin-right: auto; */
   border-radius: 5px;
 }
 
