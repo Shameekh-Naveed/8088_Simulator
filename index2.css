@@ -19,7 +19,8 @@
   gap: 2rem;
 }
 
-.sim_part {}
+.sim_part {
+}
 
 .wrapper {
   width: auto;
@@ -55,7 +56,7 @@
 
 .logo_txt p {
   font-size: 30px;
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
   font-weight: bold;
   color: #24d158;
 }
@@ -69,7 +70,6 @@
     left: -300px;
   }
 }
-
 
 .reg_main {
   background-color: var(--regmemcolour);
@@ -91,7 +91,7 @@
   border-top-right-radius: 5px;
   text-align: center;
   padding-bottom: 0.5rem;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -110,7 +110,7 @@
 }
 
 .reg_col {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 600;
   background-color: rgba(0, 0, 0, 0.1);
   width: 4rem;
@@ -146,7 +146,7 @@
   gap: 1rem;
   box-shadow: 10px 10px 21px -4px rgba(0, 0, 0, 0.52);
   border-radius: 5px;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .input_main {
@@ -189,7 +189,6 @@
   margin-top: 0.5rem;
 }
 
-
 .buttons {
   display: flex;
   gap: 0.5rem;
@@ -198,7 +197,7 @@
 .btn {
   border: 0px solid;
   padding: 0.5rem 1rem;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   border-radius: 0.75rem;
   background-color: white;
   cursor: pointer;
@@ -212,19 +211,6 @@
   background-color: rgb(16, 0, 82);
   transition-duration: 300ms;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Shameekh Part */
 
@@ -293,9 +279,8 @@
 .controller {
   /* background-color: rgb(100, 142, 145); */
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  background: #e0e0e0;
-box-shadow:  5px 5px 10px #848484,
-             -5px -5px 10px #ffffff;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 5px 5px 7px #969696, -5px -5px 7px #ffffff;
   /* border: 1px solid rgb(63, 63, 63); */
   margin: 0.5rem;
   height: 8rem;
@@ -432,26 +417,32 @@ box-shadow:  5px 5px 10px #848484,
   border-radius: 5px;
 }
 
-.databus{
+.databus {
   height: 10px;
   width: 10%;
   margin-left: 5px;
-  background-image: linear-gradient(90deg, #fff, #fff 75%, transparent 75%, transparent 100%);
+  background-image: linear-gradient(
+    90deg,
+    #fff,
+    #fff 75%,
+    transparent 75%,
+    transparent 100%
+  );
   background-size: 22px;
   position: fixed;
   animation: dataflowUp 9s infinite linear;
   z-index: 0;
 }
-#ir{
+#ir {
   width: 12%;
   margin-left: 18vw;
   background-size: 50px;
 }
 @keyframes dataflowUp {
-  from{
+  from {
     bottom: 30vh;
   }
-  to{
+  to {
     bottom: 100vh;
   }
 }

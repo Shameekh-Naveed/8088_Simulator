@@ -20,6 +20,7 @@ let D = "0",
   W = "0";
 let Mod = "00";
 
+<<<<<<< HEAD
 let registerA = "000";
 let RegisterB = "000";
 
@@ -193,3 +194,7 @@ async function test(){
 
 
 }
+=======
+let registerA = "000",
+  RegisterB = "000";
+>>>>>>> main
