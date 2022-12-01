@@ -424,25 +424,58 @@
   background-image: linear-gradient(
     90deg,
     #fff,
-    #fff 75%,
-    transparent 75%,
+    #fff 85%,
+    transparent 85%,
     transparent 100%
   );
-  background-size: 22px;
+  background-size: 23px;
   position: fixed;
   animation: dataflowUp 9s infinite linear;
   z-index: 0;
 }
+
 #ir {
-  width: 12%;
-  margin-left: 18vw;
+  width: 13%;
+  margin-left: 16vw;
   background-size: 50px;
 }
-@keyframes dataflowUp {
-  from {
-    bottom: 30vh;
-  }
-  to {
-    bottom: 100vh;
-  }
+
+/* #R0_bus{
+  height: 10px;
+  width: 10%;
+  background-image: linear-gradient(
+    90deg,
+    #fff,
+    #fff 85%,
+    transparent 85%,
+    transparent 100%
+  );
+  background-size: 23px;
+  position: fixed;
+  animation: dataflowUp 9s infinite linear;
+  z-index: 0;
 }
+#R1_bus{
+  height: 10px;
+  width: 10%;
+  background-image: linear-gradient(
+    90deg,
+    #fff,
+    #fff 85%,
+    transparent 85%,
+    transparent 100%
+  );
+  background-size: 23px;
+  position: fixed;
+  animation: dataflowUp 9s infinite linear;
+  z-index: 0;
+}
+
+@keyframes dataflowUp {
+  0% {
+    bottom: 50vh;
+  }
+  100% {
+    bottom: 85vh;
+  }
+} */
