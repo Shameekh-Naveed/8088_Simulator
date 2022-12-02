@@ -100,6 +100,8 @@
           </div>
         </div>
         <div class="datapath">
+          <div class="databus" id="RO_bus"></div>
+          <!-- <div class="databus" id="R1_bus"></div> -->
           <div class="ALU-block"></div>
           <div class="Registers-block">
             <div class="R0"></div>
@@ -110,67 +112,67 @@
         <div class="memory_main">
           <!-- <div id="memory" class="mem-row"> -->
           <div class="memSeg">
-            <div class="mem_num" id="000F">0000</div>
+            <div class="mem_num" id="15mem">0000</div>
             <div class="mem_col">F</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="000E">0000</div>
+            <div class="mem_num" id="14mem">0000</div>
             <div class="mem_col">E</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="000D">0000</div>
+            <div class="mem_num" id="13mem">0000</div>
             <div class="mem_col">D</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="000C">0000</div>
+            <div class="mem_num" id="12mem">0000</div>
             <div class="mem_col">C</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="000B">0000</div>
+            <div class="mem_num" id="11mem">0000</div>
             <div class="mem_col">B</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="000A">0000</div>
+            <div class="mem_num" id="10mem">0000</div>
             <div class="mem_col">A</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0009">0000</div>
+            <div class="mem_num" id="9mem">0000</div>
             <div class="mem_col">9</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0008">0000</div>
+            <div class="mem_num" id="8mem">0000</div>
             <div class="mem_col">8</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0007">0000</div>
+            <div class="mem_num" id="7mem">0000</div>
             <div class="mem_col">7</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0006">0000</div>
+            <div class="mem_num" id="6mem">0000</div>
             <div class="mem_col">6</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0005">0000</div>
+            <div class="mem_num" id="5mem">0000</div>
             <div class="mem_col">5</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0004">0000</div>
+            <div class="mem_num" id="4mem">0000</div>
             <div class="mem_col">4</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0003">0000</div>
+            <div class="mem_num" id="3mem">0000</div>
             <div class="mem_col">3</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0002">0000</div>
+            <div class="mem_num" id="2mem">0000</div>
             <div class="mem_col">2</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0001">0000</div>
+            <div class="mem_num" id="1mem">0000</div>
             <div class="mem_col">1</div>
           </div>
           <div class="memSeg">
-            <div class="mem_num" id="0000">0000</div>
+            <div class="mem_num" id="0mem">0000</div>
             <div class="mem_col">0</div>
           </div>
           <!-- </div> -->
@@ -199,116 +201,7 @@
     </div>
 
 
-    <div class="sim_part">
-      <div class="sim_main">
-        <div class="processor">
-          <div class="controller"></div>
-          <div class="ir_and_pc">
-            <div class="instructionregister">
-              <div class="instructionregisterimg"></div>
-            </div>
-            <div class="programcounter">
-              <div class="programcounterimg"></div>
-            </div>
-          </div>
-        </div>
-        <div class="datapath">
-          <div class="ALU-block"></div>
-          <div class="Registers-block">
-            <div class="R0"></div>
-            <div class="R1"></div>
-          </div>
-        </div>
-    
-        <div class="memory_main">
-          <!-- <div id="memory" class="mem-row"> -->
-          <div class="memSeg">
-            <div class="mem_num" id="000F">0000</div>
-            <div class="mem_col">F</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="000E">0000</div>
-            <div class="mem_col">E</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="000D">0000</div>
-            <div class="mem_col">D</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="000C">0000</div>
-            <div class="mem_col">C</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="000B">0000</div>
-            <div class="mem_col">B</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="000A">0000</div>
-            <div class="mem_col">A</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0009">0000</div>
-            <div class="mem_col">9</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0008">0000</div>
-            <div class="mem_col">8</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0007">0000</div>
-            <div class="mem_col">7</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0006">0000</div>
-            <div class="mem_col">6</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0005">0000</div>
-            <div class="mem_col">5</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0004">0000</div>
-            <div class="mem_col">4</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0003">0000</div>
-            <div class="mem_col">3</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0002">0000</div>
-            <div class="mem_col">2</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0001">0000</div>
-            <div class="mem_col">1</div>
-          </div>
-          <div class="memSeg">
-            <div class="mem_num" id="0000">0000</div>
-            <div class="mem_col">0</div>
-          </div>
-          <!-- </div> -->
-        </div>
-        <!-- <div class="memory-block"></div> -->
-        <!-- <div class="mem-pc-bus"></div>
-                <div class="pc-controller-bus"></div>
-                <div class="mem-ir-bus"></div>
-                <div class="ir-controller-bus"></div>
-                <div class="ALU-Registers-bus"></div>
-                <div class="mem-Registers-bus"></div>
-                <div class="proc-dp-bus"></div>
-                
-                
-          
-                <div class="mem-pc-bus"></div>
-                <div class="pc-controller-bus"></div>
-                <div class="mem-ir-bus"></div>
-                <div class="ir-controller-bus"></div>
-                <div class="ALU-Registers-bus"></div>
-                <div class="mem-Registers-bus"></div>
-                <div class="proc-dp-bus"></div> -->
-      </div>
-    </div>
-
+   
 
 
     <!-- </div> -->

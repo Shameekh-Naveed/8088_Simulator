@@ -19,8 +19,6 @@
   gap: 2rem;
 }
 
-.sim_part {
-}
 
 .wrapper {
   width: auto;
@@ -437,6 +435,18 @@
   width: 12%;
   margin-left: 18vw;
   background-size: 50px;
+}
+
+#R0_bus {
+  /* left: 40vw; */
+  position: absolute;
+  margin: 0;
+  left: 2vw;
+  border: 1px solid black;
+}
+#R1_bus {
+  margin: 0;
+  /* left: 6vw; */
 }
 @keyframes dataflowUp {
   from {
