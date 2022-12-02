@@ -1,22 +1,54 @@
 let A = {
   h: 0,
-  l: 0,
+  l: 1,
 };
 let B = {
-  h: 0,
-  l: 0,
+  h: 2,
+  l: 3,
 };
 let C = {
-  h: 0,
-  l: 0,
+  h: 4,
+  l: 5,
 };
 let D = {
-  h: 0,
-  l: 0,
+  h: 6,
+  l: 7,
 };
 
-let memoryContent = [0, 0, 0, 0, 0, 0, 0, 0]; // Content of 0 to F memory locations
-let memorySegments = () => {
+
+// Given the address of a register determine the register
+const reg = (address) => {
+  switch (address) {
+    case 000:
+      return A.h;
+      break;
+    case 001:
+      return A.l;
+      break;
+    case 010:
+      return B.h;
+      break;
+    case 011:
+      return B.l;
+      break;
+    case 100:
+      return C.h;
+      break;
+    case 101:
+      return C.l;
+      break;
+    case 110:
+      return D.h;
+      break;
+    case 111:
+      return D.l;
+      break;
+
+  }
+}
+
+let memoryContent = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Content of 0 to F memory locations
+const memorySegments = () => {
   let arr = [];
   for (let i = 0; i < 16; i++) {
     const element = document.getElementById(`${i}mem`);
@@ -25,20 +57,31 @@ let memorySegments = () => {
   return arr;
 };
 
-// console.log(memorySegments());
 
-let registerA = "000";
-let RegisterB = "000";
 
-let registers = {};
 
 // Creating functions for different operations
 
-function basicArithematic(opcode, D, W, mod, R0, R1) {
-  // Works for MOV, ADD, SUB, MUL, DIV
+function basicArithematic(opcode, D, W, mod, R0, R1) // Works for MOV, ADD, SUB, MUL, DIV, INC, DEC, AND, OR, XOR
+{
+  let currentMemory = memorySegments();
+  const location = currentMemory[R0];
   // if mod says address then
-  if (mod == address) {
-    R0 = 0;
+  if (mod == 11) {
+    // Figure out if R0 is address or R1
+    if (R0 == address) {
+       location = currentMemory[R0];
+    }
+  }
+
+  
+  switch (opcode) {
+    case 000000:
+      location.innerHTML = R1;
+      
+      break;
+  
+    
   }
 }
 
@@ -153,7 +196,7 @@ function registers_glow() {
 }
 
 // Empty Function for time delay
-function empty() {}
+function empty() { }
 
 // Testing function
 async function test() {
@@ -206,3 +249,4 @@ async function test() {
   pc_controller_down();
   mem_ir_up();
 }
+
