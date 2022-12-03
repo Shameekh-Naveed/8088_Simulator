@@ -1,4 +1,4 @@
- function machineCoder(str1) {
+ str1 = 'mov ax,[bx+si]';
   str1 = str1.toUpperCase();
   query = str1.split(/[ ,]+/);
   let B3216 = [
@@ -133,10 +133,12 @@
   };
 
   let Immediate = () => {
-    if (query[2][0] != "[" &&
+    if (
+      query[2][0] != "[" &&
       !["X", "H", "L", "I", "P"].includes(
         query[2][query[2].length - 1].toUpperCase()
-      )) {
+      )
+    ) {
       if (formats[2] == "0" && query[2].length >= 3 && query[1][0] == "[") {
         return false;
       } else {
@@ -389,6 +391,6 @@
       return false;
     }
   };
-}
 
+console.log(machinecode());
 // export default machineCoder;
