@@ -19,7 +19,6 @@
   gap: 2rem;
 }
 
-
 .wrapper {
   width: auto;
   height: auto;
@@ -161,6 +160,7 @@
   border: 1px solid gray;
   border-radius: 5px;
   padding: 0.5rem;
+  text-transform: uppercase;
   /* margin-top: 0.5rem; */
 }
 
@@ -268,6 +268,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 3rem;
   /* margin: 0.25rem; */
   /* padding-right: 20rem; */
   /* padding: 0 1rem; */
@@ -303,7 +304,7 @@
   /* margin: 1rem; */
   display: flex;
   flex-direction: row;
-  gap: 4rem;
+  gap: 3.5rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3rem;
@@ -401,7 +402,7 @@
   background-color: #571e48;
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: auto;
+  margin-right: auto;
   border-radius: 5px;
 }
 
@@ -411,48 +412,117 @@
   background-color: #571e48;
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: auto;
+  margin-left: auto;
   border-radius: 5px;
 }
 
 .databus {
   height: 10px;
-  width: 10%;
+  width: 5rem;
   margin-left: 5px;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     90deg,
     #fff,
     #fff 75%,
     transparent 75%,
     transparent 100%
-  );
+  ); */
+  background-color: #fff;
   background-size: 22px;
   position: fixed;
-  animation: dataflowUp 9s infinite linear;
+  /* animation: dataflowUp 3s infinite linear; */
+  /* bottom: 75vh; */
   z-index: 0;
 }
-#ir {
-  width: 12%;
-  margin-left: 18vw;
+#ir_bus {
+  /* width: 12%; */
+  margin-left: 23vw;
   background-size: 50px;
+}
+#ir_pc_bus {
+  height: 12%;
+  width: 10px;
+  /* background-color: white; */
+  background-image: none;
+  animation: none;
+  top: 10vh;
+  /* animation: dataflowLeft 2s infinite linear; */
+  /* animation: dataflowRight 2s infinite linear; */
 }
 
 #R0_bus {
-  /* left: 40vw; */
+  width: 3rem;
   position: absolute;
-  margin: 0;
-  left: 2vw;
-  border: 1px solid black;
+  right: 2.8vw;
+  /* border: 1px solid black; */
 }
 #R1_bus {
-  margin: 0;
+  width: 3rem;
+  position: absolute;
+  right: 22vw;
+  /* border: 1px solid black; */
+
+  /* margin: 0; */
   /* left: 6vw; */
+}
+#R0_R1_bus {
+  top: 13.7vh;
+  right: 25vw;
+  height: 3.5rem;
+  width: 10px;
+  /* animation: dataflowLeftALU 1.5s infinite linear; */
+
 }
 @keyframes dataflowUp {
   from {
-    bottom: 30vh;
+    bottom: 50vh;
   }
   to {
-    bottom: 100vh;
+    bottom: 75vh;
   }
+}
+@keyframes dataflowLeft {
+  from {
+    left: 28vw;
+  }
+  to {
+    left: 37vw;
+  }
+}
+@keyframes dataflowRight {
+  from {
+    left: 53vw;
+  }
+  to {
+    left: 45vw;
+  }
+}
+@keyframes dataflowRightALU {
+  from {
+    right: 23vw;
+  }
+  to {
+    right: 19vw;
+  }
+}
+@keyframes dataflowLeftALU {
+  from {
+    right: 3vw;
+  }
+  to {
+    right: 8.3vw;
+  }
+}
+
+#ir,
+#pc,
+#R0,
+#R1 {
+  /* padding-top: 1.5rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  color: white;
+  font-weight: 600;
 }

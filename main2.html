@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>8086/8088 Simulator</title>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="index2.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +17,6 @@
   <body>
     <div class="div_main">
       <div class="reg_part">
-      
         <div class="wrapper">
           <div class="logo_main">
             <div class="logo_txt">
@@ -25,87 +24,87 @@
             </div>
           </div>
         </div>
-      
+
         <div class="reg_main">
           <h3>Registers</h3>
           <div class="table" id="registers ">
             <div class="table-row">
               <div class="reg_col">AH</div>
-              <div id="ah" class="reg_num">0000</div>
+              <div id="ah" class="reg_num">12</div>
             </div>
             <div class="table-row">
               <div class="reg_col">AL</div>
-              <div id="al" class="reg_num">0000</div>
+              <div id="al" class="reg_num">34</div>
             </div>
             <div class="table-row">
               <div class="reg_col">BH</div>
-              <div id="bh" class="reg_num">0000</div>
+              <div id="bh" class="reg_num">56</div>
             </div>
             <div class="table-row">
               <div class="reg_col">BL</div>
-              <div id="bl" class="reg_num">0000</div>
+              <div id="bl" class="reg_num">78</div>
             </div>
             <div class="table-row">
               <div class="reg_col">CH</div>
-              <div id="ch" class="reg_num">0000</div>
+              <div id="ch" class="reg_num">11</div>
             </div>
             <div class="table-row">
               <div class="reg_col">CL</div>
-              <div id="cl" class="reg_num">0000</div>
+              <div id="cl" class="reg_num">22</div>
             </div>
             <div class="table-row">
               <div class="reg_col">DH</div>
-              <div id="dh" class="reg_num">0000</div>
+              <div id="dh" class="reg_num">33</div>
             </div>
             <div class="table-row">
               <div class="reg_col">DL</div>
-              <div id="dl" class="reg_num">0000</div>
+              <div id="dl" class="reg_num">44</div>
             </div>
           </div>
         </div>
-      
+
         <div class="inp_trans">
-      
           <div class="input_main">
             <!-- <h3>Input</h3> -->
             <input type="text" class="input" placeholder="Enter Command here" />
           </div>
-      
+
           <div class="trans_main">
             <h3>Translation</h3>
             <div class="trans_text">Lorem ipsum dolor sit amet.</div>
           </div>
-      
+
           <div class="buttons">
             <button class="btn" onclick="translate()">Translate</button>
             <button class="btn" onclick="test()">Simulate</button>
           </div>
-      
         </div>
       </div>
 
       <!-- <div class="sim_part"> -->
       <div class="sim_main">
         <div class="processor">
-          <div class="databus" id="pc"></div>
-          <div class="databus" id="ir"></div>
+          <div class="databus" id="pc_bus"></div>
+          <div class="databus" id="ir_bus"></div>
+          <div class="databus" id="ir_pc_bus"></div>
           <div class="controller"></div>
           <div class="ir_and_pc">
-            <div class="instructionregister">
-              <div class="instructionregisterimg"></div>
+            <div class="instructionregister" id="pc">
+              <!-- <div class="instructionregisterimg"></div> -->
             </div>
-            <div class="programcounter">
-              <div class="programcounterimg"></div>
+            <div class="programcounter" id="ir">
+              <!-- <div class="programcounterimg"></div> -->
             </div>
           </div>
         </div>
         <div class="datapath">
-          <div class="databus" id="RO_bus"></div>
-          <!-- <div class="databus" id="R1_bus"></div> -->
+          <div class="databus" id="R0_bus"></div>
+          <div class="databus" id="R1_bus"></div>
+          <div class="databus" id="R0_R1_bus"></div>
           <div class="ALU-block"></div>
           <div class="Registers-block">
-            <div class="R0"></div>
-            <div class="R1"></div>
+            <div class="R0" id="R0"></div>
+            <div class="R1" id="R1"></div>
           </div>
         </div>
 
@@ -199,10 +198,6 @@
       </div>
       <!-- </div> -->
     </div>
-
-
-   
-
 
     <!-- </div> -->
   </body>

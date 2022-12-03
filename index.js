@@ -1,53 +1,98 @@
-let A = {
-  h: 0,
-  l: 1,
-};
-let B = {
-  h: 2,
-  l: 3,
-};
-let C = {
-  h: 4,
-  l: 5,
-};
-let D = {
-  h: 6,
-  l: 7,
+let registers = {
+  A: {
+    l: { address: 0, data: "B3" },
+    h: { address: 100, data: "A1" },
+  },
+  B: {
+    l: { address: 011, data: "D6" },
+    h: { address: 111, data: "C4" },
+  },
+  C: {
+    l: { address: 001, data: "22" },
+    h: { address: 101, data: "00" },
+  },
+  D: {
+    l: { address: 010, data: "AA" },
+    h: { address: 110, data: "DD" },
+  },
 };
 
+let pc = "0000",
+  ir = "000000  00 00 000 000";
 
-// Given the address of a register determine the register
-const reg = (address) => {
-  switch (address) {
-    case 000:
-      return A.h;
-      break;
-    case 001:
-      return A.l;
-      break;
-    case 010:
-      return B.h;
-      break;
-    case 011:
-      return B.l;
-      break;
-    case 100:
-      return C.h;
-      break;
-    case 101:
-      return C.l;
-      break;
-    case 110:
-      return D.h;
-      break;
-    case 111:
-      return D.l;
-      break;
+let R0 = "0000",
+  R1 = "0000";
 
+// Manipulate regisers
+const setRegisters = (address, newData) => {
+  for (const register in registers) {
+    for (const subReg in registers[register]) {
+      if (registers[register][subReg].address == address) {
+        console.log("here");
+        registers[register][subReg].data = newData;
+        return true;
+      }
+    }
   }
-}
+};
 
-let memoryContent = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Content of 0 to F memory locations
+// Given the address of a register determine the value
+const reg = (address) => {
+  for (const register in registers) {
+    for (const subReg in registers[register]) {
+      if (registers[register][subReg].address == address) {
+        console.log("here");
+        return registers[register][subReg].data;
+      }
+    }
+  }
+
+  // switch (address) {
+  //   case 000:
+  //     return registers.A.h.data;
+  //     break;
+  //   case 001:
+  //     return registers.A.l.data;
+  //     break;
+  //   case 010:
+  //     return registers.B.h.data;
+  //     break;
+  //   case 011:
+  //     return registers.B.l.data;
+  //     break;
+  //   case 100:
+  //     return registers.C.h.data;
+  //     break;
+  //   case 101:
+  //     return registers.C.l.data;
+  //     break;
+  //   case 110:
+  //     return registers.D.h.data;
+  //     break;
+  //   case 111:
+  //     return registers.D.l.data;
+  //     break;
+  // }
+};
+
+let memoryContent = [
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+  "0000",
+]; // Content of 0 to F memory locations
 const memorySegments = () => {
   let arr = [];
   for (let i = 0; i < 16; i++) {
@@ -57,33 +102,161 @@ const memorySegments = () => {
   return arr;
 };
 
+// Function that sets everything that needs to be set
 
+const mountData = () => {
+  let memSegs = memorySegments();
+  for (let i = 0; i < memSegs.length; i++) {
+    const location = memSegs[i];
+    location.innerHTML = memoryContent[i];
+  }
+  document.getElementById("ah").innerHTML = registers.A.h.data;
+  document.getElementById("al").innerHTML = registers.A.l.data;
+  document.getElementById("bh").innerHTML = registers.B.h.data;
+  document.getElementById("bl").innerHTML = registers.B.l.data;
+  document.getElementById("ch").innerHTML = registers.C.h.data;
+  document.getElementById("cl").innerHTML = registers.C.l.data;
+  document.getElementById("dh").innerHTML = registers.D.h.data;
+  document.getElementById("dl").innerHTML = registers.D.l.data;
 
+  document.getElementById("pc").innerHTML = pc;
+  document.getElementById("ir").innerHTML = ir;
+
+  document.getElementById("R0").innerHTML = R0;
+  document.getElementById("R1").innerHTML = R1;
+};
 
 // Creating functions for different operations
 
-function basicArithematic(opcode, D, W, mod, R0, R1) // Works for MOV, ADD, SUB, MUL, DIV, INC, DEC, AND, OR, XOR
-{
-  let currentMemory = memorySegments();
-  const location = currentMemory[R0];
-  // if mod says address then
-  if (mod == 11) {
-    // Figure out if R0 is address or R1
-    if (R0 == address) {
-       location = currentMemory[R0];
-    }
-  }
+function basicArithematic(opcode, D, W, mod, R0, R1) {
 
-  
-  switch (opcode) {
-    case 000000:
-      location.innerHTML = R1;
-      
-      break;
-  
+  let currentMemory = memorySegments();
+  let destinationContent = reg(R0);
+  let sourceContent = reg(R1);
+//  0 pr right pr para ha
+  if (D = 0) {
+    let sourceContent
+  } else {
     
   }
+
+  if (mod == 11) {
+    
+  }
+
+  // console.log({ sourceContent, destinationContent });
+
+  // // if mod says address then
+  // if (mod == 11) {
+  //   // Figure out if R0 is address or R1
+  //   if (R0 == address) {
+  //     location = currentMemory[R0];
+  //   }
+  // }
+
+  switch (opcode) {
+    case 100010: //MOV
+      setRegisters(R0, sourceContent);
+      break;
+    case 100011: //INC
+      setRegisters(R0, sourceContent);
+      break;
+    case 100101: //ADD
+      setRegisters(R0, sourceContent);
+      break;
+    case 100110: //SUB
+      setRegisters(R0, sourceContent);
+      break;
+    case 100111: //DEC
+      setRegisters(R0, sourceContent);
+      break;
+    case 100100: //CMP
+      setRegisters(R0, sourceContent);
+      break;
+    case 101000: //OR
+      setRegisters(R0, sourceContent);
+      break;
+    case 101001: //AND
+      setRegisters(R0, sourceContent);
+      break;
+    case 101010: //XOR
+      setRegisters(R0, sourceContent);
+      break;
+    case 1000010:
+      setRegisters(R0, sourceContent);
+      break;
+    case 1000010:
+      setRegisters(R0, sourceContent);
+      break;
+    case 1000010:
+      setRegisters(R0, sourceContent);
+      break;
+    case 1000010:
+      setRegisters(R0, sourceContent);
+      break;
+    case 1000010:
+      setRegisters(R0, sourceContent);
+      break;
+    case 1000010:
+      setRegisters(R0, sourceContent);
+      break;
+  }
+
+  mountData();
 }
+
+// Empty time out function
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// A function that moves the lines using animation
+
+const busRun = async (busId, auxBus = 0) => {
+  let animation = "dataflowUp 3s infinite linear";
+
+  switch (auxBus) {
+    case 1:
+      animation = "dataflowLeft 2s infinite linear";
+      break;
+    case 2:
+      animation = "dataflowRight 2s infinite linear";
+      break;
+    case 3:
+      animation = "dataflowLeftALU 2s infinite linear";
+      break;
+    case 4:
+      animation = "dataflowRightALU 2s infinite linear";
+      break;
+  }
+
+  let bus = document.getElementById(`${busId}`);
+  bus.style.animation = animation;
+  await sleep(3 * 1000);
+  bus.style.animation = "";
+};
+
+const pcToController = async () => {
+  await busRun("pc_bus");
+  await busRun("ir_pc_bus", 1);
+};
+const irToController = async () => {
+  await busRun("ir_bus");
+  await busRun("ir_pc_bus", 2);
+};
+const R0ToALU = async () => {
+  await busRun("R0_bus");
+  await busRun("R0_R1_bus", 3);
+};
+const R1ToALU = async () => {
+  await busRun("R1_bus");
+  await busRun("R0_R1_bus", 4);
+};
+
+await pcToController();
+await irToController();
+await R0ToALU();
+await R1ToALU();
 
 // Creating sequence functions for every type of cylinder
 
@@ -196,7 +369,7 @@ function registers_glow() {
 }
 
 // Empty Function for time delay
-function empty() { }
+function empty() {}
 
 // Testing function
 async function test() {
@@ -249,4 +422,3 @@ async function test() {
   pc_controller_down();
   mem_ir_up();
 }
-
