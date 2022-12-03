@@ -546,6 +546,7 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
   }
 
   if (mod == "00" && D == "1") {
+    
     sourceAddress = disp;
     destinationAddress = R0;
     // sourceContent = currentMemory[sourceAddress].innerHTML;
@@ -556,6 +557,8 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
   } else if (mod == "11" && D == "1") {
     sourceAddress = R0;
     destinationAddress = R1;
+  }else if(mod == "11" && D == "0"){
+
   }
   // console.log({ sourceContent, destinationContent });
 
