@@ -531,13 +531,8 @@ const mountData = () => {
 function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
   console.log({ opcode, D, W, mod, R0, R1, disp });
   let currentMemory = memorySegments();
-  let source = R1;
-  if (D == "0") {
-    source = R0;
-  }
-  let destinationContent = reg1(R0);
-  let sourceContent = reg1(source);
-  let sourceAddress;
+  let sourceContent, destinationContent;
+  let sourceAddress, destinationAddress;
 
   if (mod == "00") {
     // => R1 is ignored
@@ -550,9 +545,17 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
     console.log({ sourceAddress, sourceContent, destinationContent });
   }
 
-
-  if (mod=="00") {
-    
+  if (mod == "00" && D == "1") {
+    sourceAddress = disp;
+    destinationAddress = R0;
+    // sourceContent = currentMemory[sourceAddress].innerHTML;
+    // destinationContent = reg1(R0);
+  } else if (mod == "00" && D == "0") {
+    sourceAddress = R1;
+    destinationContent = disp;
+  } else if (mod == "11" && D == "1") {
+    sourceAddress = R0;
+    destinationAddress = R1;
   }
   // console.log({ sourceContent, destinationContent });
 
