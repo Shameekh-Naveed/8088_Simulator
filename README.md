@@ -51,7 +51,7 @@ and 16-bit external data bus resulting in faster processing.
 ## File names and Description:
 The following is a list of filenames along with their description.
 
-## Intrucntions:
+## Instructions:
 #### ROL
 Rotate Left is what the ROL instruction means. Depending on the count value, the bits in the
 operand (register) are rotated left a certain number of places. Themost significant bit (MSB)
