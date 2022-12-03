@@ -276,7 +276,7 @@ function machineCoder(str1) {
           formats[5] = RM00[mem];
         } catch {
           formats[5] = RM00["[DIRECT]"];
-          formats[6] = mem.slice(1, mem.length - 1) + "H";
+          formats[6] = mem.slice(1, mem.length - 1);
         }
       } else if (formats[3] == "01") {
         try {
@@ -337,67 +337,66 @@ function machineCoder(str1) {
         return false;
       }
     }
+    return true;
   };
 
   let machinecode = () => {
-    // if (error()) {
-    //   return false;
-    // }
-    let t = findOP();
-    if (t) {
-      findD();
-      findW();
-      torf = findMOD();
-      if (torf) {
-        ques = Immediate();
-        if (ques) {
-          if (formats[3] == "11") {
-            q1 = if11();
-          } else {
-            q1 = ifnot11();
-          }
-          if (formats[4] == "REG") {
-            formats[4] = "000";
-          }
-          if (formats[5] == "R/M") {
-            formats[5] = "000";
-          }
-          if (formats)
-            if (q1) {
-              mem = {
-                OPCODE: "",
-                D: "",
-                W: "",
-                MOD: "",
-                REM: "",
-                RM: "",
-                DISP: "",
-                IMM: "",
-              };
-              let count = 0;
-              for (i in mem) {
-                mem[i] = formats[count];
-                count += 1;
-              }
-              return mem;
+    if (error()) {
+      let t = findOP();
+      if (t) {
+        findD();
+        findW();
+        torf = findMOD();
+        if (torf) {
+          ques = Immediate();
+          if (ques) {
+            if (formats[3] == "11") {
+              q1 = if11();
             } else {
-              return false;
+              q1 = ifnot11();
             }
+            if (formats[4] == "REG") {
+              formats[4] = "000";
+            }
+            if (formats[5] == "R/M") {
+              formats[5] = "000";
+            }
+            if (formats)
+              if (q1) {
+                mem = {
+                  OPCODE: "",
+                  D: "",
+                  W: "",
+                  MOD: "",
+                  REM: "",
+                  RM: "",
+                  DISP: "",
+                  IMM: "",
+                };
+                let count = 0;
+                for (i in mem) {
+                  mem[i] = formats[count];
+                  count += 1;
+                }
+                return mem;
+              } else {
+                return false;
+              }
+          } else {
+            return false;
+          }
         } else {
           return false;
         }
       } else {
         return false;
       }
-    } else {
-      return false;
     }
   };
 
   return machinecode();
 }
 
-// export default machineCoder;
 // --------------------------------------------------------
 
 let machineCode = 0;
@@ -431,7 +430,6 @@ const setRegisters = (address, newData) => {
   for (const register in registers) {
     for (const subReg in registers[register]) {
       if (registers[register][subReg].address == address) {
-        console.log("here");
         registers[register][subReg].data = newData;
         return true;
       }
@@ -440,12 +438,11 @@ const setRegisters = (address, newData) => {
 };
 
 // Given the address of a register determine the value
-const reg = (address) => {
-  for (const register in registers) {
-    for (const subReg in registers[register]) {
-      if (registers[register][subReg].address == address) {
-        console.log("here");
-        return registers[register][subReg].data;
+const reg1 = (address) => {
+  for (const register1 in registers) {
+    for (const subReg in registers[register1]) {
+      if (registers[register1][subReg].address == address) {
+        return registers[register1][subReg].data;
       }
     }
   }
@@ -531,19 +528,32 @@ const mountData = () => {
 
 // Creating functions for different operations
 
-function basicArithematic(opcode, D, W, mod, R0, R1) {
+function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
+  console.log({ opcode, D, W, mod, R0, R1, disp });
   let currentMemory = memorySegments();
-  let destinationContent = reg(R0);
-  let sourceContent = reg(R1);
-  //  0 pr right pr para ha
-  if ((D = 0)) {
-    let sourceContent;
-  } else {
+  let source = R1;
+  if (D == "0") {
+    source = R0;
+  }
+  let destinationContent = reg1(R0);
+  let sourceContent = reg1(source);
+  let sourceAddress;
+
+  if (mod == "00") {
+    // => R1 is ignored
+    sourceAddress = disp;
+    sourceContent = currentMemory[sourceAddress].innerHTML;
+
+    // => R0 is register address
+    destinationContent = reg1(R0);
+
+    console.log({ sourceAddress, sourceContent, destinationContent });
   }
 
-  if (mod == 11) {
-  }
 
+  if (mod=="00") {
+    
+  }
   // console.log({ sourceContent, destinationContent });
 
   // // if mod says address then
@@ -555,49 +565,51 @@ function basicArithematic(opcode, D, W, mod, R0, R1) {
   // }
 
   switch (opcode) {
-    case 100010: //MOV
+    case "100010": //MOV
+      console.log("first");
+      console.log({ R0, sourceContent });
       setRegisters(R0, sourceContent);
       break;
-    case 100011: //INC
+    case "100011": //INC
       setRegisters(R0, sourceContent);
       break;
-    case 100101: //ADD
+    case "100101": //ADD
       setRegisters(R0, sourceContent);
       break;
-    case 100110: //SUB
+    case "100110": //SUB
       setRegisters(R0, sourceContent);
       break;
-    case 100111: //DEC
+    case "100111": //DEC
       setRegisters(R0, sourceContent);
       break;
-    case 100100: //CMP
+    case "100100": //CMP
       setRegisters(R0, sourceContent);
       break;
-    case 101000: //OR
+    case "101000": //OR
       setRegisters(R0, sourceContent);
       break;
-    case 101001: //AND
+    case "101001": //AND
       setRegisters(R0, sourceContent);
       break;
-    case 101010: //XOR
+    case "101010": //XOR
       setRegisters(R0, sourceContent);
       break;
-    case 1000010:
+    case "1000010":
       setRegisters(R0, sourceContent);
       break;
-    case 1000010:
+    case "1000010":
       setRegisters(R0, sourceContent);
       break;
-    case 1000010:
+    case "1000010":
       setRegisters(R0, sourceContent);
       break;
-    case 1000010:
+    case "1000010":
       setRegisters(R0, sourceContent);
       break;
-    case 1000010:
+    case "1000010":
       setRegisters(R0, sourceContent);
       break;
-    case 1000010:
+    case "1000010":
       setRegisters(R0, sourceContent);
       break;
   }
@@ -826,19 +838,29 @@ async function test() {
 }
 
 function translate() {
-  let machineCodeObject = machineCoder(
-    document.getElementsByClassName("input")[0].value
+  machineCode = machineCoder(document.getElementsByClassName("input")[0].value);
+
+  document.getElementsByClassName("trans_text")[0].innerHTML =
+    machineCode.OPCODE +
+    " " +
+    machineCode.D +
+    machineCode.W +
+    " " +
+    machineCode.MOD +
+    " " +
+    machineCode.REM +
+    " " +
+    machineCode.RM;
+}
+
+function simulate() {
+  basicArithematic(
+    machineCode.OPCODE,
+    machineCode.D,
+    machineCode.W,
+    machineCode.MOD,
+    machineCode.REM,
+    machineCode.RM,
+    machineCode.DISP
   );
-  machineCode =
-    machineCodeObject.OPCODE +
-    " " +
-    machineCodeObject.D +
-    machineCodeObject.W +
-    " " +
-    machineCodeObject.MOD +
-    " " +
-    machineCodeObject.REM +
-    " " +
-    machineCodeObject.RM;
-  document.getElementsByClassName("trans_text")[0].innerHTML = machineCode;
 }
