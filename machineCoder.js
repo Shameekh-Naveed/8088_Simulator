@@ -1,4 +1,4 @@
-str1="mov ax,[bx+si+10]"
+str1="mov ch,dh"
 str1=str1.toUpperCase()
 query=str1.split(/[ ,]+/);
 let B3216=["EAX","EBX","ECX","EDX","AX","BX","CX","DX","BP","SI","DI"]
@@ -152,22 +152,46 @@ let if11=()=>
 {
     if (formats[2]=="0")
     {
-        try
-        {
+        formats[4]=REG1[query[1]]
+        try{
+            if (REG1[query[1]]==undefined)
+            {
+                throw new Error("Not Found")
+            }
+            formats[4]=REG1[query[1]]
+        }
+        catch{
+            formats[4]="000"
+        }
+
+        formats[5]=REG1[query[2]]
+        try{
             if (REG1[query[2]]==undefined)
             {
-                throw new Error("Out of Range")
+                throw new Error("Not Found")
             }
             formats[5]=REG1[query[2]]
         }
-        catch
-        {
+        catch{
             formats[5]="000"
         }
+
     }
-    if (formats[2]=="1")
+    else
     {
         formats[4]=REG2[query[1]]
+        try{
+            if (REG2[query[1]]==undefined)
+            {
+                throw new Error("Not Found")
+            }
+            formats[4]=REG2[query[1]]
+        }
+        catch{
+            formats[4]="000"
+        }
+
+        formats[5]=REG2[query[2]]
         try{
             if (REG2[query[2]]==undefined)
             {
@@ -178,6 +202,7 @@ let if11=()=>
         catch{
             formats[5]="000"
         }
+
     }
     return true;
 }
@@ -418,3 +443,4 @@ let machinecode=()=>
     }
 }
 
+console.log(machinecode())
