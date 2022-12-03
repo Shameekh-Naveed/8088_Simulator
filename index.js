@@ -1,3 +1,6 @@
+import machineCoder from "./Machinecodeassemble.js";
+
+let machineCode = 0;
 let registers = {
   A: {
     l: { address: 0, data: "B3" },
@@ -421,3 +424,10 @@ async function test() {
   pc_controller_down();
   mem_ir_up();
 }
+
+function translate(){
+  machineCode = machineCoder(input);
+  document.getElementsByClassName('trans_text')[0].innerHTML = 11
+};
+
+translate();
