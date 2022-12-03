@@ -129,19 +129,16 @@ const mountData = () => {
 // Creating functions for different operations
 
 function basicArithematic(opcode, D, W, mod, R0, R1) {
-
   let currentMemory = memorySegments();
   let destinationContent = reg(R0);
   let sourceContent = reg(R1);
-//  0 pr right pr para ha
-  if (D = 0) {
-    let sourceContent
+  //  0 pr right pr para ha
+  if ((D = 0)) {
+    let sourceContent;
   } else {
-    
   }
 
   if (mod == 11) {
-    
   }
 
   // console.log({ sourceContent, destinationContent });
@@ -253,11 +250,13 @@ const R1ToALU = async () => {
   await busRun("R0_R1_bus", 4);
 };
 
-await pcToController();
-await irToController();
-await R0ToALU();
-await R1ToALU();
-
+const allAnimation = async () => {
+  await pcToController();
+  await irToController();
+  await R0ToALU();
+  await R1ToALU();
+};
+allAnimation();
 // Creating sequence functions for every type of cylinder
 
 // Memory to PC bus toggle
