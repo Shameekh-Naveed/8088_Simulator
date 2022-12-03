@@ -132,24 +132,7 @@ let findMOD=()=>
                 }
                 if (!RPM.includes(q1[q1.length-1]))
                 {
-                    formats[6]=""
-                    let n=q1[q1.length-1].trimStart("0")
-                    for (i in n)
-                    {
-                        try
-                        {
-                            if (HEX[n[i]]==undefined)
-                            {
-                                throw new Error("Not found")
-                            }
-                            formats[6]+=HEX[n[i]]
-                        }
-                        catch
-                        {
-                            formats[6]="Disp"
-                            return false
-                        }
-                    }
+                    formats[6]=q1[q1.length-1].trimStart("0")   
                 }
             }
         }
@@ -435,4 +418,3 @@ let machinecode=()=>
     }
 }
 
-console.log(machinecode())
