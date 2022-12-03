@@ -1,4 +1,4 @@
-str1="mov ax,bx"
+str1="mov ax,50"
 str1=str1.toUpperCase()
 query=str1.split(/[ ,]+/);
 let B3216=["EAX","EBX","ECX","EDX","AX","BX","CX","DX","BP","SI","DI"]
@@ -76,7 +76,8 @@ let Immediate=()=>
             formats[7]=""
             for (i of query[2])
             {
-                formats[7]=formats[7].concat(HEX[query[2][i]])
+
+                formats[7]=formats[7].concat(HEX[i])
             }
             return true;
         }
@@ -385,34 +386,37 @@ let machinecode=()=>
                 {
                     formats[5]="000"
                 }
+                if (formats)
                 if (q1)
                 {
-                    mem=""
-                    formats.forEach(function(e)
+                    mem={OPCODE:"",D:"",W:"",MOD:"",REM:"",RM:"",DISP:"",IMM:""}
+                    let count=0
+                    for (i in mem)
                     {
-                        mem+=e
-                    })
-                    console.log(mem)
+                        mem[i]=formats[count]
+                        count+=1
+                    }
+                    return mem
                 }
                 else
                 {
-                    console.log("Incorrect Command")
+                    return false
                 }
             }
             else
             {
-                console.log("Size of input Greater than register Size")
+                return false
             }
         }
         else
         {
-            console.log("Incorrect Register")
+            return false
         }
     }
     else
     {
-        console.log("Instrction Doesnot Exist")
+        return false
     }
 }
 
-machinecode()
+console.log(machinecode())
