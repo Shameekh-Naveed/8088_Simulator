@@ -5,15 +5,15 @@ An undergraduatemajoring in computer science would benefit greatly from a good u
 of assembly language programming. Programming with assembly or lower-level
 languages provides one a highly important understanding of computer organisation and
 architecture.
-###Project Goal:
-###TASK NO 1
+### Project Goal:
+### TASK NO 1
 You need towrite a programwith easy to graphical use interface in the programming language
 of your choice that will simulate the behavior of 8088/8086 processor. The program should
 include the conversion from assembly language to machine code as per the book (implement
 at least 15 different instructions with different operands). The program should show display
 the contents of the registers and memory (for simplicity you can use 8 registers and 16
 memory locations).
-###TASK 2
+### TASK 2
 The program should also give error in case of not allowed instructions like size mismatch etc.
 Choose a simple circuit of 8086/88 (preferably circuit but you can also use block diagram)
 The simulator should also highlight the cycles or modules (like ALU,Memory etc.) used in
