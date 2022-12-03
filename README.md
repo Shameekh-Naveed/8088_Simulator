@@ -1,6 +1,6 @@
 # 8088_Simulator
 Welcome to the 8088/8086 simulator we made as out COAL FYP
-# About the Project
+## About the Project
 An undergraduatemajoring in computer science would benefit greatly from a good understanding
 of assembly language programming. Programming with assembly or lower-level
 languages provides one a highly important understanding of computer organisation and
