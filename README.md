@@ -31,7 +31,7 @@ the current instruction.
 These programs are designed for users who are already familiar with or have some knowledge
 of assemblers. Of course, it would be quite beneficial if you were familiar with another
 programming language (such as web assembly or another)
-##8086 Information:
+##8086 Information
 
 
 • 8086Microprocessor is an enhanced version of 8085Microprocessor that was designed
