@@ -442,33 +442,6 @@ const reg1 = (address) => {
       }
     }
   }
-
-  // switch (address) {
-  //   case 000:
-  //     return registers.A.h.data;
-  //     break;
-  //   case 001:
-  //     return registers.A.l.data;
-  //     break;
-  //   case 010:
-  //     return registers.B.h.data;
-  //     break;
-  //   case 011:
-  //     return registers.B.l.data;
-  //     break;
-  //   case 100:
-  //     return registers.C.h.data;
-  //     break;
-  //   case 101:
-  //     return registers.C.l.data;
-  //     break;
-  //   case 110:
-  //     return registers.D.h.data;
-  //     break;
-  //   case 111:
-  //     return registers.D.l.data;
-  //     break;
-  // }
 };
 
 let memoryContent = [
