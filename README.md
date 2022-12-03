@@ -31,7 +31,7 @@ the current instruction.
 These programs are designed for users who are already familiar with or have some knowledge
 of assemblers. Of course, it would be quite beneficial if you were familiar with another
 programming language (such as web assembly or another)
-##8086 Information
+## 8086 Information
 
 
 • 8086Microprocessor is an enhanced version of 8085Microprocessor that was designed
@@ -48,10 +48,10 @@ memory resulting in faster processing.
 and 16-bit external data bus resulting in faster processing.
 
 
-##File names and Description:
+## File names and Description:
 The following is a list of filenames along with their description.
 
-##Intrucntions:
+## Intrucntions:
 #### ROL
 Rotate Left is what the ROL instruction means. Depending on the count value, the bits in the
 operand (register) are rotated left a certain number of places. Themost significant bit (MSB)
@@ -101,15 +101,15 @@ And reg,reg And reg,mem And reg,imm
 Performs a bit-wise xor of the two operands, and stores the result in destination. variations:
 Xor reg,reg, Xor mem,reg, Xor reg,mem, Xor reg,imm.
 
-##Frameworks
+## Frameworks
 
 • Javascript.
 • HTML
 • CSS
 
-##Output screenshots:
+## Output screenshots:
 
-##Lessons learnt:
+## Lessons learnt:
 
 Linking UI and code. Complex problem solving owing to problems that
 developed during the creation of parsing and compiling. Github cooperation in group,
