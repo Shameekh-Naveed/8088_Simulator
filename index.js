@@ -183,19 +183,7 @@ function machineCoder(str1) {
             formats[3] = MOD["16B"];
           }
           if (!RPM.includes(q1[q1.length - 1])) {
-            formats[6] = "";
-            let n = q1[q1.length - 1].trimStart("0");
-            for (i in n) {
-              try {
-                if (HEX[n[i]] == undefined) {
-                  throw new Error("Not found");
-                }
-                formats[6] += HEX[n[i]];
-              } catch {
-                formats[6] = "Disp";
-                return false;
-              }
-            }
+            formats[6] = q1[q1.length - 1].trimStart("0");
           }
         }
       } else {
@@ -261,6 +249,9 @@ function machineCoder(str1) {
     }
     if ((formats[7] != "Imm" && formats[1] == "1") || formats[7] == "Imm") {
       if (formats[2] == "1") {
+        if (REG2[reg] == undefined) {
+          return false;
+        }
         formats[4] = REG2[reg];
       } else {
         formats[4] = REG1[reg];
@@ -280,7 +271,7 @@ function machineCoder(str1) {
         }
       } else if (formats[3] == "01") {
         try {
-          if (RM01[mem]) {
+          if (RM01[mem] == undefined) {
             throw new Error("Not Found");
           }
           formats[5] = RM01[mem];
@@ -288,6 +279,7 @@ function machineCoder(str1) {
           try {
             q1[q1.length - 1] = "D8";
             mem = q1.join("+");
+            console.log(mem);
             if (RM01[`[${mem}]`] == undefined) {
               throw new Error("Not Found");
             }
@@ -320,6 +312,9 @@ function machineCoder(str1) {
   };
 
   let error = () => {
+    if (query[2][0] == "[" && B8.includes(query[1])) {
+      return false;
+    }
     if (query[2][0] == "[" && query[1][0] == "[") {
       return false;
     }
@@ -330,8 +325,7 @@ function machineCoder(str1) {
           return false;
         }
       }
-    } else if (B8.includes(query[1]));
-    {
+    } else if (B8.includes(query[1])) {
       if (B3216.includes(query[2])) {
         console.log("Different Size registers Not supported");
         return false;
@@ -391,6 +385,8 @@ function machineCoder(str1) {
       } else {
         return false;
       }
+    } else {
+      return false;
     }
   };
 
@@ -402,7 +398,7 @@ function machineCoder(str1) {
 let machineCode = 0;
 let registers = {
   A: {
-    l: { address: 0, data: "B3" },
+    l: { address: 000, data: "B3" },
     h: { address: 100, data: "A1" },
   },
   B: {
@@ -534,32 +530,51 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
   let sourceContent, destinationContent;
   let sourceAddress, destinationAddress;
 
+  // if (mod == "00") {
+  //   // => R1 is ignored
+  //   sourceAddress = disp;
+  //   sourceContent = currentMemory[sourceAddress].innerHTML;
+
+  //   // => R0 is register address
+  //   destinationContent = reg1(R0);
+
+  //   // console.log({ sourceAddress, sourceContent, destinationContent });
+  // }
+
   if (mod == "00") {
-    // => R1 is ignored
-    sourceAddress = disp;
-    sourceContent = currentMemory[sourceAddress].innerHTML;
-
-    // => R0 is register address
-    destinationContent = reg1(R0);
-
-    console.log({ sourceAddress, sourceContent, destinationContent });
-  }
-
-  if (mod == "00" && D == "1") {
-    
-    sourceAddress = disp;
-    destinationAddress = R0;
+    if (D == "1") {
+      sourceAddress = disp;
+      destinationAddress = R0;
+      destinationContent = reg1(destinationAddress);
+      sourceContent = currentMemory[sourceAddress];
+    } else {
+      sourceAddress = R1;
+      destinationAddress = disp;
+      destinationContent = currentMemory[destinationAddress];
+      sourceContent = reg1(sourceAddress);
+    }
     // sourceContent = currentMemory[sourceAddress].innerHTML;
     // destinationContent = reg1(R0);
-  } else if (mod == "00" && D == "0") {
-    sourceAddress = R1;
-    destinationContent = disp;
-  } else if (mod == "11" && D == "1") {
-    sourceAddress = R0;
-    destinationAddress = R1;
-  }else if(mod == "11" && D == "0"){
-
+  } else if (mod == "11") {
+    if (D == "1") {
+      sourceAddress = R1;
+      destinationAddress = R0;
+      destinationContent = reg1(destinationAddress);
+      sourceContent = reg1(sourceAddress);
+    } else {
+      sourceAddress = R0;
+      destinationAddress = R1;
+      destinationContent = reg1(destinationAddress);
+      sourceContent = reg1(sourceAddress);
+    }
   }
+
+  console.log({
+    sourceAddress,
+    sourceContent,
+    destinationAddress,
+    destinationContent,
+  });
   // console.log({ sourceContent, destinationContent });
 
   // // if mod says address then
@@ -574,7 +589,7 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
     case "100010": //MOV
       console.log("first");
       console.log({ R0, sourceContent });
-      setRegisters(R0, sourceContent);
+      setRegisters(destinationAddress, sourceContent);
       break;
     case "100011": //INC
       setRegisters(R0, sourceContent);
