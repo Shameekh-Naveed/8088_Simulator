@@ -1,4 +1,4 @@
-const machineCoder = (str1) => {
+ function machineCoder(str1) {
   str1 = str1.toUpperCase();
   query = str1.split(/[ ,]+/);
   let B3216 = [
@@ -133,12 +133,10 @@ const machineCoder = (str1) => {
   };
 
   let Immediate = () => {
-    if (
-      query[2][0] != "[" &&
+    if (query[2][0] != "[" &&
       !["X", "H", "L", "I", "P"].includes(
         query[2][query[2].length - 1].toUpperCase()
-      )
-    ) {
+      )) {
       if (formats[2] == "0" && query[2].length >= 3 && query[1][0] == "[") {
         return false;
       } else {
@@ -391,6 +389,6 @@ const machineCoder = (str1) => {
       return false;
     }
   };
-};
+}
 
-export default machineCoder;
+// export default machineCoder;
