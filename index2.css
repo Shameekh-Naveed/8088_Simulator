@@ -298,7 +298,7 @@
   /* justify-content: space-between; */
 }
 
-.memory_main :nth-child(16){
+.memory_main :nth-child(16) {
   border: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -341,7 +341,7 @@
   /* margin-left: auto;
    margin-right: auto; */
   margin: auto;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 800;
 }
 
@@ -468,13 +468,13 @@
   margin: 1rem;
   border-radius: 20px;
   border-width: 3px;
-  padding: .65rem;
+  padding: 0.65rem;
   display: flex;
 }
 
-.ALU-block p{
+.ALU-block p {
   margin: auto;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 800;
 }
 
@@ -716,4 +716,199 @@
   /* text-align: center; */
   color: white;
   font-weight: 600;
+}
+
+/* ========================DJANGO KAAM============================== */
+#overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* opacity: 1; */
+  /* display: none;  */
+  /* overflow: hidden; */
+}
+
+#console {
+  /* position: absolute; */
+  margin: auto;
+  margin-top: 4%;
+  margin-bottom: auto;
+  height: 80%;
+  width: 60%;
+  border-radius: 10px;
+  background-color: #e6e6e6;
+  padding: 1rem;
+  font-family: "Raleway", sans-serif;
+  padding-left: 3rem;
+
+  /* display: none; */
+}
+
+#console h1 {
+  color: #f4c430;
+  margin-bottom: 0.5rem;
+}
+
+#consoleText {
+  resize: none;
+  /* overflow: scroll; */
+  width: 90%;
+  height: 82%;
+  border: none;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  line-height: 1.5rem;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: -5px -5px 10px #949494, 5px 5px 10px #ffffff;
+  padding: 1rem;
+  text-transform: uppercase;
+  /* margin-left: 2rem; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+}
+#consoleText:focus {
+  /* border: none; */
+  outline: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 93%;
+}
+
+.smexcy_buttons {
+  /* display: flex; */
+  /* border-right: 3px solid #949494; */
+}
+
+.smexcy_buttons :nth-child(1) {
+  background-color: #f4c430;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.smexcy_buttons :nth-child(3) {
+  background-color: #ff2f2fef;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.smexcy {
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  box-shadow: 5px 0px 8px -3px rgba(0, 0, 0, 0.75);
+  font-size: small;
+  font-weight: 600;
+  letter-spacing: .05rem;
+  transition: .5s;
+}
+/* .smexcy:hover{
+  opacity: ;
+ } */
+
+.smexcy:nth-child(1):hover {
+  background-color: #d1a728;
+}
+.smexcy:nth-child(3):hover {
+  background-color: #c42424ef;
+}
+
+#open{
+  margin-top: -1.5rem;
+  margin-left: auto;
+  cursor: pointer;
+  /* border: none;. */
+  border-radius: 50%;
+  background-color: #f4c430;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+
+
+/* ======Fade in Left animation =================== */
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+/* ==========Fado out animation */
+@-webkit-keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.fadeOutRight {
+  -webkit-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
