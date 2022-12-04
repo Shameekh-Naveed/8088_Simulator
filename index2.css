@@ -288,7 +288,7 @@
   justify-content: center;
   width: 3.5rem;
   letter-spacing: 1px;
-  background-color: rgba(105, 105, 105, 0.281);
+  background-color: rgba(165, 165, 165, 0.281);
   /* border-radius: 5px; */
   /* padding: 1px; */
   /* margin: 0.25rem; */
@@ -303,6 +303,10 @@
   border-bottom-right-radius: 5px;
 }
 
+.memory_main :nth-child(1) {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
 
 .mem_col {
   font-size: 0.99rem;
