@@ -57,53 +57,64 @@ The following is a list of filenames along with their description.
 
 ## Instructions:
 #### ROL
-Rotate Left is what the ROL instruction means. Depending on the count value, the bits in the
-operand (register) are rotated left a certain number of places. Themost significant bit (MSB)
-is rotated into the least significant bit (LSB) position throughout this process.
-variations: reg, immediate
+The left rotate instruction shifts all bits in the register or memory operand specified. The most significant bit is rotated to the carry flag,
+the carry flag is rotated to the least significant bit position, all other bits are shifted to the left. 
+The result does not include the original value of the carry flag.
+
+
 #### ROR
-Rotate Right is referred to as a ROR instruction. Depending on the count value, the operand’s
-contents are rotated right a certain number of places. The least significant bit (LSB) gets
-relocated into themost significant bit’s (MSB) position since this instruction rotates the bits
-to the right. variations: reg, immediate
+ROR (short for "ROtate Right") is the mnemonic for a machine language instruction which "rotates" the bits in either the accumulator or a specified address in RAM, one bit position towards the "right", or least significant, "end" of the byte. The most significant bit, is set to the value in the carry flag. Similarly, what was the least significant bit in the byte prior to the shifting, will subsequently be "rotated" into the carry flag
+    The negative flag is set if the result is negative, i.e. has its most significant bit set.
+    The zero flag is set if the result is zero, or cleared if it is non-zero.
+    The carry flag is set or cleared depending on the result.
 
 #### SHR
-Shift Right is referred to by the abbreviation SHR in the instruction. The SHR instruction
-shifts the bits of the destination operand to the right by however many bits are specified in
-the count operand, and it is zero-filled. variations: shl/shr reg, immediate value
+The SHR (shift right) instruction performs a logical
+right shift on the destination operand. The highest bit
+position is filled with a zero
+
+EXAMPLES:
+mov dl,80
+shr dl,1 ; DL = 40
+shr dl,2 ; DL = 10
 
 #### SHL
-
-Shift Left" is referred to as the SHL command. By inserting the same number of zeroes from
-the right end, this instruction simply shifts the mentioned bits in the register to the left side
-one by one. variations: shl/shr reg, immediate value
+The SHL (shift left) instruction performs a logical left
+shift on the destination operand, filling the lowest bit
+with 0
+OPERANDS TYPES:
+SHL reg,imm8
+SHL mem,imm8
+SHL reg,CL
+SHL mem,CL
 
 
 #### INC
 
-To increase an operand by one, use the INC instruction. It operates on a single operand that
-may be in memory or a register. Variations: Inc/Dec reg, Inc/Decmem(Memory in register
-like [dx] but not like [00436h].)
+The IINC instruction increments a local variable. This instruction has two operands: 
+a 1-byte unsigned offset and a 1-byte signed integer value.
+The offset is added to the value in the LV register to determine the location of the variable that is to be incremented
 
 #### DEC
-The DEC instruction is used for decrementing an operand by one. Itworks on a single operand
-that can be either in a register or in memory. Variations: Inc/Dec reg, Inc/Dec mem (Memory
-in register like [dx] but not like [00436h].)
+The DEC instruction decrements the specified operand by 1. An original value of 00h underflows to 0FFh.
+No flags are affected by this instruction. When this instruction is used to modify an output port, the value used as
+the port data is read from the output data latch, not the pins of the port
 
 #### NOT:
-NOT operation performs the 1s complement of the operand Variations: Not reg, Not mem
+The NOT instruction implements the bitwise NOT operation. NOT operation reverses the bits in an operand.
+The operand could be either in a register or in the memory.
 
 
 #### AND:
 
-The AND instruction performs a Boolean (bitwise) AND operation between each pair of
-matching bits in two operands and places the result in the destination operand. variations:
-And reg,reg And reg,mem And reg,imm
+The AND instruction is used for supporting logical expressions by performing bitwise AND operation.
+The bitwise AND operation returns 1, if the matching bits from both the operands are 1, otherwise it returns 0
 
 
 #### XOR
-Performs a bit-wise xor of the two operands, and stores the result in destination. variations:
-Xor reg,reg, Xor mem,reg, Xor reg,mem, Xor reg,imm.
+The XOR instruction performs a bit wise Exclusive OR operation between corresponding bits in the two operands and places
+the result in the first operand. reg, mem, and immed can be 8, 16, or 32 bits. 
+The XOR instruction can be used to reverse selected bits in an operand while preserving the remaining bits.
 
 
 
