@@ -22,7 +22,7 @@ the current instruction.
 * [Requirements](#Requirements)
 * [8086 Information](#8086-information)
 * [Instructions ](#Instructions)
-* [File names and details](#File-names-and-Description)
+* [File names and Details](#File-names-and-Details)
 * [Structure](#Structure)
 * [Outcomes](#Outcomes)
 * [increament in knowledge](#Increament in knwoledge)
