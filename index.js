@@ -727,26 +727,40 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp, imm) {
   R0 = sourceContent;
   R1 = destinationContent;
 
+  controllerWorking();
+
   document.getElementById("pc").innerHTML = pc;
+  glowComponent("pc");
 
   await pcToController();
 
   document.getElementById("ir").innerHTML = irFunc();
+  glowComponent("ir");
 
   await irToController();
 
   await outerBusRun("aux_bus", 1);
 
+  aluWorking();
+
   document.getElementById("R1").innerHTML = R0;
+  glowComponent("R1");
 
   await R0ToALU();
+  if (disp != "Disp") {
+    await outerBusRun("mem_datapath");
+  }
   document.getElementById("R0").innerHTML = R1;
+  glowComponent("R0");
+
   await R1ToALU();
+
   switch (opcode) {
     case "100010": //MOV
       console.log({ R0, sourceContent });
-      if (disp != "Disp") {
+      if (disp != "Disp" && D == "0") {
         // currentMemory[destinationAddress].innerHTML = sourceContent;
+        await outerBusRun("mem_datapath");
         memoryContent[destinationAddress] = sourceContent;
         console.log({ currentMemory });
         break;
@@ -885,11 +899,36 @@ const R1ToALU = async () => {
 };
 
 const glowComponent = async (componentId) => {
-  let animation = "glow 1.5s infinite linear";
+  let animation = "glow .5s infinite linear";
   let bus = document.getElementById(`${componentId}`);
   bus.style.animation = animation;
-  await sleep(1.5 * 1000);
+  await sleep(1 * 1000);
   bus.style.animation = "";
+};
+
+const aluWorking = async () => {
+  let animation = "glowCircle 1s infinite linear";
+  let c1 = document.getElementsByClassName("ALUTLcircle")[0];
+  let c2 = document.getElementsByClassName("ALUBRcircle")[0];
+  c1.style.animation = animation;
+  c2.style.animation = animation;
+  c2.style.animationDirection = "reverse";
+  await sleep(8 * 1000);
+  c1.style.animation = "";
+  c2.style.animation = "";
+};
+
+const controllerWorking = async () => {
+  let animation = "glowCircle 1s infinite linear";
+  let c1 = document.getElementsByClassName("controllerTLcircle")[0];
+  let c2 = document.getElementsByClassName("controllerBRcircle")[0];
+  c1.style.animation = animation;
+  c1.style.animationDirection = "reverse";
+  c2.style.animation = animation;
+
+  await sleep(8 * 1000);
+  c1.style.animation = "";
+  c2.style.animation = "";
 };
 function translate() {
   machineCode = machineCoder(document.getElementsByClassName("input")[0].value);

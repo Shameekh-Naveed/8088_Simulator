@@ -284,12 +284,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 3rem;
+  width: 3.5rem;
   background-color: rgb(173, 204, 207);
+  letter-spacing: 1px;
   /* margin: 0.25rem; */
   /* padding-right: 20rem; */
   /* padding: 0 1rem; */
   /* justify-content: space-between; */
+}
+.mem_col {
+  font-size: 0.99rem;
+  font-weight: 700;
+  /* color: blue; */
 }
 
 .controller {
@@ -299,15 +305,27 @@
   box-shadow: 5px 5px 7px #969696, -5px -5px 7px #ffffff;
   /* border: 1px solid rgb(63, 63, 63); */
   margin: 0.5rem;
-  height: 8rem;
+  height: 6rem;
   border-radius: 20px;
   /* border-width: 3px; */
   transition: 0.3s;
-  width: 8rem;
+  width: 6rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+  display: flex;
+  padding: 0.75rem;
 }
+
+.controller p {
+  /* position: absolute;
+  text-align: center;
+   */
+  /* margin-left: auto;
+   margin-right: auto; */
+  margin: auto;
+}
+
 .controller h3 {
   background-color: transparent;
   font-family: "Oswald", sans-serif;
@@ -319,23 +337,28 @@
 
 .controllerTLcircle {
   background-color: rgb(255, 255, 255);
-  border: 3px solid rgb(94, 118, 128);
-  height: 5.5%;
-  width: 5.5%;
+  border: 2px solid rgb(94, 118, 128);
+  width: 0.65rem;
+  height: 0.65rem;
+  /* width: 2rem; */
   border-radius: 50%;
-  position: relative;
+  /* position: relative;
   top: 6.5%;
-  left: 6.5%;
+  left: 6.5%; */
+  margin-bottom: auto;
+  margin-right: auto;
 }
 .controllerBRcircle {
   background-color: rgb(255, 255, 255);
-  border: 3px solid rgb(94, 118, 128);
-  height: 5.5%;
-  width: 5.5%;
+  border: 2px solid rgb(94, 118, 128);
+  width: 0.65rem;
+  height: 0.65rem;
   border-radius: 50%;
-  position: relative;
+  margin-top: auto;
+  margin-left: auto;
+  /* position: relative;
   top: 73%;
-  left: 83%;
+  left: 83%; */
 }
 
 .ir_and_pc {
@@ -416,35 +439,43 @@
 }
 
 .ALU-block {
-  background-color: rgb(100, 142, 145);
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 5px 5px 7px #969696, -5px -5px 7px #ffffff;
   /* border: 1px solid rgb(70, 98, 98); */
   box-shadow: 5px 5px 7px #969696, -5px -5px 7px #ffffff;
-  height: 8rem;
-  width: 8rem;
+  height: 6rem;
+  width: 6rem;
   margin: 1rem;
-  border-radius: 10px;
+  border-radius: 20px;
   border-width: 3px;
+  padding: .65rem;
+  display: flex;
+}
+
+.ALU-block p{
+  margin: auto;
 }
 
 .ALUTLcircle {
   background-color: rgb(255, 255, 255);
-  border: 3px solid rgb(70, 98, 98);
-  height: 5.5%;
-  width: 5.5%;
+  border: 2px solid rgb(70, 98, 98);
+  width: 0.65rem;
+  height: 0.65rem;
   border-radius: 50%;
-  position: relative;
-  top: 83%;
-  left: 6.5%;
+  /* position: relative; */
+  margin-top: auto;
+  margin-right: auto;
 }
 .ALUBRcircle {
   background-color: rgb(255, 255, 255);
-  border: 3px solid rgb(70, 98, 98);
-  height: 5.5%;
-  width: 5.5%;
+  border: 2px solid rgb(70, 98, 98);
+  width: 0.65rem;
+  height: 0.65rem;
   border-radius: 50%;
-  position: relative;
-  top: 0%;
-  left: 83%;
+  /* position: relative; */
+  margin-bottom: auto;
+  margin-left: auto;
 }
 
 .Registers-block {
@@ -459,12 +490,13 @@
   flex-direction: row;
   padding: 1rem;
   gap: 5rem;
+  margin-top: 1.5rem;
 }
 
 .R0 {
   width: 4rem;
-  height: 3.5rem;
-  background-color: #571e48;
+  height: 4rem;
+  background-color: rgb(100, 142, 145);
   margin-top: auto;
   margin-bottom: auto;
   margin-right: auto;
@@ -477,8 +509,8 @@
 
 .R1 {
   width: 4rem;
-  height: 3.5rem;
-  background-color: #571e48;
+  height: 4rem;
+  background-color: rgb(100, 142, 145);
   margin-top: auto;
   margin-bottom: auto;
   margin-left: auto;
@@ -623,6 +655,32 @@
   }
   to {
     left: 65vw;
+  }
+}
+
+@keyframes glow {
+  0% {
+    border: none;
+    box-shadow: 0px 0px 0px -182px rgba(128, 125, 125, 0.877);
+    transform: scale(1);
+  }
+  50% {
+    border: none;
+    box-shadow: 11px 10px 21px 3px rgba(128, 125, 125, 0.89);
+    transform: scale(1.25);
+  }
+  100% {
+    box-shadow: 0px 0px 0px -182px rgba(128, 125, 125, 0.89);
+    transform: scale(1);
+  }
+}
+
+@keyframes glowCircle {
+  from {
+    background-color: rgb(94, 118, 128);
+  }
+  to {
+    background-color: white;
   }
 }
 
