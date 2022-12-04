@@ -49,6 +49,17 @@ and 16-bit external data bus resulting in faster processing.
 ## File names and details:
 The following is a list of filenames along with their description.
 
+## index.js:
+This file has a code for the simulation logic.
+## index2.css:
+This file has a css code for fronthend.
+## machineCoder.js:
+This file has a javascript code to convert instruction into machine code
+## main2.html:
+This file has code of html for fronthend
+
+Remaining files are pngs that are use in fronthend.
+
 ## Structure:
 
 • Javascript.
