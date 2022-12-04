@@ -131,15 +131,21 @@ The XOR instruction can be used to reverse selected bits in an operand while pre
 
 ## Outcomes.
 
-![output 3](https://user-images.githubusercontent.com/119393518/205508536-0f85950e-1749-4220-a45d-8b8837921ef1.PNG)
+
+![output 1](https://user-images.githubusercontent.com/119393518/205510584-43cead85-f623-4537-a2eb-6b55a653ab21.PNG)
 
 
-![output 4](https://user-images.githubusercontent.com/119393518/205508549-53450f01-2c2b-42fd-a244-7ba771b6d423.PNG)
 
 
-![output no 1](https://user-images.githubusercontent.com/119393518/205508580-d5ca4186-b5e4-42a9-a692-8b4454625045.PNG)
+![output 2](https://user-images.githubusercontent.com/119393518/205510632-8227f2d1-f732-4996-a781-2faf7f4bd8f6.PNG)
 
-![output no 2](https://user-images.githubusercontent.com/119393518/205508592-efa3dfc1-c5dc-48b9-9e9d-3242ccf99f45.PNG)
+
+
+![output 3](https://user-images.githubusercontent.com/119393518/205510597-74f32a65-5e07-481f-bfa0-41ee2eeeb4d3.PNG)
+
+
+
+![output 4](https://user-images.githubusercontent.com/119393518/205510600-25cdd788-eb35-4e36-9dbd-1404017b6719.PNG)
 
 
 
