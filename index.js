@@ -1,6 +1,41 @@
+function translate() {
+  machineCode = machineCoder(document.getElementsByClassName("input")[0].value);
+  if (machineCode == false) {
+    alert("invalid instruction");
+    document.getElementsByClassName("trans_text")[0].innerHTML =
+      "Invalid Syntax";
+    return false;
+  }
+  document.getElementsByClassName("trans_text")[0].innerHTML =
+    machineCode.OPCODE +
+    " " +
+    machineCode.D +
+    machineCode.W +
+    " " +
+    machineCode.MOD +
+    " " +
+    machineCode.REM +
+    " " +
+    machineCode.RM;
+}
+
+function simulate() {
+  basicArithematic(
+    machineCode.OPCODE,
+    machineCode.D,
+    machineCode.W,
+    machineCode.MOD,
+    machineCode.REM,
+    machineCode.RM,
+    machineCode.DISP,
+    machineCode.IMM
+  );
+}
+
 function machineCoder(str1) {
+  let mem,reg,torf,ques,i,q1;
   str1 = str1.toUpperCase();
-  query = str1.split(/[ ,]+/);
+  let query = str1.split(/[ ,]+/);
   let B3216 = [
     "EAX",
     "EBX",
@@ -155,8 +190,9 @@ function machineCoder(str1) {
   };
 
   let findMOD = () => {
-    count = -1;
-    msg = false;
+    let count = -1;
+    let msg = false;
+    let temp,q1;
     for (i of query) {
       count += 1;
       if (i[0] == "[") {
@@ -272,6 +308,7 @@ function machineCoder(str1) {
   };
 
   let ifnot11 = () => {
+    let mem;
     if (formats[1] == "0") {
       mem = query[1];
       reg = query[2];
@@ -930,38 +967,9 @@ const controllerWorking = async () => {
   c1.style.animation = "";
   c2.style.animation = "";
 };
-function translate() {
-  machineCode = machineCoder(document.getElementsByClassName("input")[0].value);
-  if (machineCode == false) {
-    alert("invalid instruction");
-    document.getElementsByClassName("trans_text")[0].innerHTML =
-      "Invalid Syntax";
-    return false;
-  }
-  document.getElementsByClassName("trans_text")[0].innerHTML =
-    machineCode.OPCODE +
-    " " +
-    machineCode.D +
-    machineCode.W +
-    " " +
-    machineCode.MOD +
-    " " +
-    machineCode.REM +
-    " " +
-    machineCode.RM;
-}
-
-function simulate() {
-  basicArithematic(
-    machineCode.OPCODE,
-    machineCode.D,
-    machineCode.W,
-    machineCode.MOD,
-    machineCode.REM,
-    machineCode.RM,
-    machineCode.DISP,
-    machineCode.IMM
-  );
-}
 
 mountData();
+
+
+document.getElementById("translater").onclick = ()=>{translate()}
+document.getElementById("simulator").onclick = ()=>{simulate()}
