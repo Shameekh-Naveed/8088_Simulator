@@ -417,7 +417,7 @@
 
 .ALU-block {
   background-color: rgb(100, 142, 145);
-  border: 1px solid rgb(70, 98, 98);
+  /* border: 1px solid rgb(70, 98, 98); */
   box-shadow: 5px 5px 7px #969696, -5px -5px 7px #ffffff;
   height: 8rem;
   width: 8rem;
