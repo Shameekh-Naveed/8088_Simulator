@@ -197,17 +197,37 @@ function machineCoder(str1) {
 
   let if11 = () => {
     if (formats[2] == "0") {
+      formats[4] = REG1[query[1]];
+      try {
+        if (REG1[query[1]] == undefined) {
+          throw new Error("Not Found");
+        }
+        formats[4] = REG1[query[1]];
+      } catch {
+        formats[4] = "000";
+      }
+
+      formats[5] = REG1[query[2]];
       try {
         if (REG1[query[2]] == undefined) {
-          throw new Error("Out of Range");
+          throw new Error("Not Found");
         }
         formats[5] = REG1[query[2]];
       } catch {
         formats[5] = "000";
       }
-    }
-    if (formats[2] == "1") {
+    } else {
       formats[4] = REG2[query[1]];
+      try {
+        if (REG2[query[1]] == undefined) {
+          throw new Error("Not Found");
+        }
+        formats[4] = REG2[query[1]];
+      } catch {
+        formats[4] = "000";
+      }
+
+      formats[5] = REG2[query[2]];
       try {
         if (REG2[query[2]] == undefined) {
           throw new Error("Not Found");
@@ -395,28 +415,69 @@ function machineCoder(str1) {
 
 // --------------------------------------------------------
 
+// Hexadecimal Adder function
+function adder(a, b, digits) {
+  var ndigits = digits,
+    i,
+    carry = 0,
+    d,
+    result = "";
+  for (i = ndigits - 1; i >= 0; i--) {
+    d = parseInt(a[i], 16) + parseInt(b[i], 16) + carry;
+    carry = d >> 4;
+    result = (d & 15).toString(16) + result;
+  }
+  return result;
+}
+
+function hexToDec(hex) {
+  return parseInt(hex, 16).toString(10);
+}
+
+function decToHex(dec) {
+  return parseInt(dec, 10).toString(16).toUpperCase();
+}
+
+function binToHex(bin) {
+  return parseInt(bin, 2).toString(16).toUpperCase();
+}
+
 let machineCode = 0;
 let registers = {
   A: {
-    l: { address: 000, data: "B3" },
-    h: { address: 100, data: "A1" },
+    l: { address: "000", data: "B3" },
+    h: { address: "100", data: "A1" },
   },
   B: {
-    l: { address: 011, data: "D6" },
-    h: { address: 111, data: "C4" },
+    l: { address: "011", data: "D6" },
+    h: { address: "111", data: "C4" },
   },
   C: {
-    l: { address: 001, data: "22" },
-    h: { address: 101, data: "00" },
+    l: { address: "001", data: "22" },
+    h: { address: "101", data: "00" },
   },
   D: {
-    l: { address: 010, data: "AA" },
-    h: { address: 110, data: "DD" },
+    l: { address: "010", data: "AA" },
+    h: { address: "110", data: "DD" },
   },
 };
 
-let pc = "0000",
-  ir = "000000  00 00 000 000";
+let pc = "1SF";
+let irFunc = () => {
+  return (
+    machineCode.OPCODE +
+    " " +
+    machineCode.D +
+    machineCode.W +
+    " " +
+    machineCode.MOD +
+    " " +
+    machineCode.REM +
+    " " +
+    machineCode.RM
+  );
+};
+let  ir = "000000 00 00 000 000";
 
 let R0 = "0000",
   R1 = "0000";
@@ -426,6 +487,7 @@ const setRegisters = (address, newData) => {
   for (const register in registers) {
     for (const subReg in registers[register]) {
       if (registers[register][subReg].address == address) {
+        console.log({ address, newData });
         registers[register][subReg].data = newData;
         return true;
       }
@@ -488,31 +550,22 @@ const mountData = () => {
   document.getElementById("dh").innerHTML = registers.D.h.data;
   document.getElementById("dl").innerHTML = registers.D.l.data;
 
-  document.getElementById("pc").innerHTML = pc;
-  document.getElementById("ir").innerHTML = ir;
+  // document.getElementById("pc").innerHTML = pc;
+  // document.getElementById("ir").innerHTML = ir;
 
-  document.getElementById("R0").innerHTML = R0;
-  document.getElementById("R1").innerHTML = R1;
+  // document.getElementById("R0").innerHTML = R0;
+  // document.getElementById("R1").innerHTML = R1;
 };
 
 // Creating functions for different operations
 
-function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
-  console.log({ opcode, D, W, mod, R0, R1, disp });
+async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
+  console.log({ opcode, D, W, mod, R0, R1, disp, imm });
   let currentMemory = memorySegments();
   let sourceContent, destinationContent;
+  let sourceContent2, destinationContent2;
   let sourceAddress, destinationAddress;
-
-  // if (mod == "00") {
-  //   // => R1 is ignored
-  //   sourceAddress = disp;
-  //   sourceContent = currentMemory[sourceAddress].innerHTML;
-
-  //   // => R0 is register address
-  //   destinationContent = reg1(R0);
-
-  //   // console.log({ sourceAddress, sourceContent, destinationContent });
-  // }
+  let sourceAddress2, destinationAddress2;
 
   if (mod == "00") {
     if (D == "1") {
@@ -526,19 +579,40 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
       destinationContent = currentMemory[destinationAddress];
       sourceContent = reg1(sourceAddress);
     }
-    // sourceContent = currentMemory[sourceAddress].innerHTML;
-    // destinationContent = reg1(R0);
   } else if (mod == "11") {
     if (D == "1") {
       sourceAddress = R1;
       destinationAddress = R0;
       destinationContent = reg1(destinationAddress);
       sourceContent = reg1(sourceAddress);
+      if (imm != "Imm") {
+        sourceAddress = null;
+        sourceContent = binToHex(imm);
+      }
     } else {
       sourceAddress = R0;
       destinationAddress = R1;
       destinationContent = reg1(destinationAddress);
       sourceContent = reg1(sourceAddress);
+      if (imm != "Imm") {
+        sourceAddress = null;
+        sourceContent = binToHex(imm);
+      }
+    }
+    if (W == "1") {
+      sourceAddress2 = "1" + sourceAddress[1] + sourceAddress[2];
+      sourceContent2 = reg1(sourceAddress2);
+
+      destinationAddress2 = "1" + destinationAddress[1] + destinationAddress[2];
+      destinationContent2 = reg1(destinationAddress2);
+      console.log({
+        sourceAddress2,
+        sourceAddress,
+        sourceContent2,
+        sourceContent,
+        destinationAddress2,
+        destinationContent2,
+      });
     }
   }
 
@@ -548,45 +622,61 @@ function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0) {
     destinationAddress,
     destinationContent,
   });
-  // console.log({ sourceContent, destinationContent });
 
-  // // if mod says address then
-  // if (mod == 11) {
-  //   // Figure out if R0 is address or R1
-  //   if (R0 == address) {
-  //     location = currentMemory[R0];
-  //   }
-  // }
+  R0 = sourceContent;
+  R1 = destinationContent;
 
+  document.getElementById("pc").innerHTML = pc;
+
+  await pcToController();
+
+  document.getElementById("ir").innerHTML = irFunc();
+
+  await irToController();
+
+  document.getElementById("R1").innerHTML = R0;
+
+  await R0ToALU();
+  document.getElementById("R0").innerHTML = R1;
+await R1ToALU();
   switch (opcode) {
     case "100010": //MOV
-      console.log("first");
       console.log({ R0, sourceContent });
       setRegisters(destinationAddress, sourceContent);
+      if (W == "1") {
+        setRegisters(destinationAddress2, sourceContent2);
+      }
       break;
     case "100011": //INC
-      setRegisters(R0, sourceContent);
+      setRegisters(destinationAddress, adder(destinationContent, "01", 2));
       break;
     case "100101": //ADD
-      setRegisters(R0, sourceContent);
+      setRegisters(
+        destinationAddress,
+        adder(sourceContent, destinationContent, W == "1" ? 4 : 2)
+      );
+
       break;
     case "100110": //SUB
-      setRegisters(R0, sourceContent);
+      setRegisters(destinationAddress, sourceContent - destinationContent);
       break;
     case "100111": //DEC
-      setRegisters(R0, sourceContent);
+      setRegisters(destinationAddress, destinationContent - 1);
       break;
     case "100100": //CMP
       setRegisters(R0, sourceContent);
       break;
     case "101000": //OR
-      setRegisters(R0, sourceContent);
+      let result = hexToDec(sourceContent) | hexToDec(destinationContent);
+      setRegisters(destinationAddress, decToHex(result));
       break;
     case "101001": //AND
-      setRegisters(R0, sourceContent);
+      let resulter = hexToDec(sourceContent) & hexToDec(destinationContent);
+      setRegisters(destinationAddress, decToHex(resulter));
       break;
     case "101010": //XOR
-      setRegisters(R0, sourceContent);
+      let resultish = hexToDec(sourceContent) ^ hexToDec(destinationContent);
+      setRegisters(destinationAddress, decToHex(resultish));
       break;
     case "1000010":
       setRegisters(R0, sourceContent);
@@ -619,7 +709,7 @@ function sleep(ms) {
 // A function that moves the lines using animation
 
 const busRun = async (busId, auxBus = 0) => {
-  let animation = "dataflowUp 3s infinite linear";
+  let animation = "dataflowUp 2s infinite linear";
 
   switch (auxBus) {
     case 1:
@@ -638,7 +728,7 @@ const busRun = async (busId, auxBus = 0) => {
 
   let bus = document.getElementById(`${busId}`);
   bus.style.animation = animation;
-  await sleep(3 * 1000);
+  await sleep(2 * 1000);
   bus.style.animation = "";
 };
 
@@ -665,175 +755,16 @@ const allAnimation = async () => {
   await R0ToALU();
   await R1ToALU();
 };
-allAnimation();
-// Creating sequence functions for every type of cylinder
-
-// Memory to PC bus toggle
-function mem_pc_down() {
-  let toggleAble = document.querySelector(".mem-pc-bus");
-
-  toggleAble.classList.toggle("mem-pc-bus-down-fill");
-}
-
-// PC to Controller bus toggle
-function pc_controller_down() {
-  let toggleAble = document.querySelector(".pc-controller-bus");
-
-  toggleAble.classList.toggle("pc-controller-bus-down-fill");
-}
-
-// Memory to IR bus toggle
-function mem_ir_up() {
-  let toggleAble = document.querySelector(".mem-ir-bus");
-
-  toggleAble.classList.toggle("mem-ir-bus-up-fill");
-}
-
-// IR to Controller Bus Toggle
-function ir_controller_up() {
-  let toggleAble = document.querySelector(".ir-controller-bus");
-
-  toggleAble.classList.toggle("ir-controller-bus-up-fill");
-}
-
-// ALU to Registers Bus Toggle
-function alu_regs_up() {
-  let toggleAble = document.querySelector(".ALU-Registers-bus");
-
-  toggleAble.classList.toggle("ALU-Registers-bus-up-fill");
-}
-function alu_regs_down() {
-  let toggleAble = document.querySelector(".ALU-Registers-bus");
-
-  toggleAble.classList.toggle("ALU-Registers-bus-down-fill");
-}
-
-// Memory to Registers Bus Toggle
-function mem_regs_up() {
-  let toggleAble = document.querySelector(".mem-Registers-bus");
-
-  toggleAble.classList.toggle("mem-Registers-bus-up-fill");
-}
-
-function mem_regs_down() {
-  let toggleAble = document.querySelector(".mem-Registers-bus");
-
-  toggleAble.classList.toggle("mem-Registers-bus-down-fill");
-}
-
-// Processor to Datapath Bus Toggle
-function proc_dp_left() {
-  let toggleAble = document.querySelector(".proc-dp-bus");
-
-  toggleAble.classList.toggle("proc-dp-bus-left-fill");
-}
-function proc_dp_right() {
-  let toggleAble = document.querySelector(".proc-dp-bus");
-
-  toggleAble.classList.toggle("proc-dp-bus-right-fill");
-}
-
-// FUNCTIONS TO GLOW THE BOXES
-// Controler Box
-function controller_glow() {
-  let toggleAble = document.querySelector(".controller");
-
-  toggleAble.classList.toggle("controller-glow");
-}
-
-// PC Box
-function pc_glow() {
-  let toggleAble = document.querySelector(".programcounter");
-
-  toggleAble.classList.toggle("programcounter-glow");
-}
-
-// IR Box
-function ir_glow() {
-  let toggleAble = document.querySelector(".instructionregister");
-
-  toggleAble.classList.toggle("instructionregister-glow");
-}
-
-// Memory Box
-function memory_glow() {
-  let toggleAble = document.querySelector(".memory-block");
-
-  toggleAble.classList.toggle("memory-block-glow");
-}
-
-// ALU Box
-function ALU_glow() {
-  let toggleAble = document.querySelector(".ALU-block");
-
-  toggleAble.classList.toggle("ALU-block-glow");
-}
-
-// Registers Box
-function registers_glow() {
-  let toggleAble = document.querySelector(".Registers-block");
-
-  toggleAble.classList.toggle("Registers-block-glow");
-}
-
-// Empty Function for time delay
-function empty() {}
-
-// Testing function
-async function test() {
-  controller_glow();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  pc_controller_down();
-  await new Promise((empty) => setTimeout(empty, 700));
-  controller_glow();
-
-  pc_glow();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  mem_pc_down();
-  await new Promise((empty) => setTimeout(empty, 700));
-  pc_glow();
-
-  memory_glow();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  mem_ir_up();
-  await new Promise((empty) => setTimeout(empty, 700));
-  memory_glow();
-
-  ir_glow();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  ir_controller_up();
-  await new Promise((empty) => setTimeout(empty, 700));
-  ir_glow();
-
-  controller_glow();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  alu_regs_up();
-  await new Promise((empty) => setTimeout(empty, 700));
-  controller_glow();
-
-  mem_regs_down();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  proc_dp_right();
-  await new Promise((empty) => setTimeout(empty, 700));
-
-  proc_dp_right();
-  mem_regs_down();
-  alu_regs_up();
-  ir_controller_up();
-  mem_pc_down();
-  pc_controller_down();
-  mem_ir_up();
-}
+// allAnimation();
 
 function translate() {
   machineCode = machineCoder(document.getElementsByClassName("input")[0].value);
-
+  if (machineCode == false) {
+    alert("invalid instruction");
+    document.getElementsByClassName("trans_text")[0].innerHTML =
+      "Invalid Syntax";
+    return false;
+  }
   document.getElementsByClassName("trans_text")[0].innerHTML =
     machineCode.OPCODE +
     " " +
@@ -855,6 +786,9 @@ function simulate() {
     machineCode.MOD,
     machineCode.REM,
     machineCode.RM,
-    machineCode.DISP
+    machineCode.DISP,
+    machineCode.IMM
   );
 }
+
+mountData();
