@@ -18,6 +18,8 @@ let RM10={"[BX+SI+D16]":"000","[BX+DI+D16]":"001","[BP+SI+D16]":"010","[BP+DI+D1
 
 let MOD={"NO":"00","8B":"01","16B":"10","REG":"11"}
 
+
+let opcode3={"SHL":"101101","SHR":"101110","ROR":"101111","ROL":"110000"}
 let opcode1={"MOV":"100010"}
 let opcode2={"INC":"100011","ADD":"100101","SUB":"100110","DEC":"100111","CMP":"100100","OR":"101000","AND":"101001","XOR":"101010"}
 
@@ -73,12 +75,7 @@ let Immediate=()=>
         }
         else
         {
-            formats[7]=""
-            for (i of query[2])
-            {
-
-                formats[7]=formats[7].concat(HEX[i])
-            }
+            formats[7]=query[2]
             return true;
         }
     }
@@ -209,6 +206,27 @@ let if11=()=>
 
 let findOP=()=>
 {
+    if (opcode3[query[0]]!=undefined)
+    {
+        formats[0]=opcode3[query[0]]
+        if (B8.includes(query[1])!=-1 || B3216.includes(query[1]!=-1))
+        {
+            Immediate()
+            console.log(formats)
+            if (formats[7]!="Imm")
+            {
+                return true
+            }
+            else
+            {
+                return false
+            }
+        }
+        else
+        {
+            return false
+        }
+    }
     try
     {
         if (opcode1[query[0]]==undefined)
