@@ -600,7 +600,6 @@ const memorySegments = () => {
 };
 
 // Function that sets everything that needs to be set
-
 const mountData = () => {
   let memSegs = memorySegments();
   for (let i = 0; i < memSegs.length; i++) {
@@ -624,7 +623,6 @@ const mountData = () => {
 };
 
 // Creating functions for different operations
-
 async function basicArithematic(opcode, D, W, mod, R0, R1, disp, imm) {
   console.log({
     msg: "Machine code passed to basic arithematic",
@@ -731,17 +729,19 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp, imm) {
 
   document.getElementById("pc").innerHTML = pc;
 
-  // await pcToController();
+  await pcToController();
 
   document.getElementById("ir").innerHTML = irFunc();
 
-  // await irToController();
+  await irToController();
+
+  await outerBusRun("aux_bus", 1);
 
   document.getElementById("R1").innerHTML = R0;
 
-  // await R0ToALU();
+  await R0ToALU();
   document.getElementById("R0").innerHTML = R1;
-  // await R1ToALU();
+  await R1ToALU();
   switch (opcode) {
     case "100010": //MOV
       console.log({ R0, sourceContent });
@@ -833,18 +833,18 @@ function sleep(ms) {
 // A function that moves the lines using animation
 
 const outerBusRun = async (busId, auxBus = 0) => {
-  let animation = "memB 2s infinite linear";
+  let animation = "memB 1.5s infinite linear";
   if (auxBus == 1) {
-    animation = "auxB 2s infinite linear";
+    animation = "auxB 1.5s infinite linear";
   }
   let bus = document.getElementById(`${busId}`);
   bus.style.animation = animation;
-  await sleep(2 * 1000);
+  await sleep(1.5 * 1000);
   bus.style.animation = "";
 };
 
 const busRun = async (busId, auxBus = 0) => {
-  let animation = "dataflowUp 2s infinite linear";
+  let animation = "dataflowUp 1.5s infinite linear";
 
   switch (auxBus) {
     case 1:
@@ -863,7 +863,7 @@ const busRun = async (busId, auxBus = 0) => {
 
   let bus = document.getElementById(`${busId}`);
   bus.style.animation = animation;
-  await sleep(2 * 1000);
+  await sleep(1.5 * 1000);
   bus.style.animation = "";
 };
 
@@ -884,6 +884,13 @@ const R1ToALU = async () => {
   await busRun("R0_R1_bus", 4);
 };
 
+const glowComponent = async (componentId) => {
+  let animation = "glow 1.5s infinite linear";
+  let bus = document.getElementById(`${componentId}`);
+  bus.style.animation = animation;
+  await sleep(1.5 * 1000);
+  bus.style.animation = "";
+};
 function translate() {
   machineCode = machineCoder(document.getElementsByClassName("input")[0].value);
   if (machineCode == false) {

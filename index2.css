@@ -90,8 +90,8 @@
   padding-bottom: 0.5rem;
   /* font-family: 'Fira Sans', sans-serif; */
   /* font-family: 'Solway', serif; */
-  color:#112e3a;
-  font-family: 'Oswald', sans-serif;
+  color: #112e3a;
+  font-family: "Oswald", sans-serif;
   font-size: 1.1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 0, 0.2);
@@ -112,7 +112,7 @@
 }
 
 .reg_col {
-  font-family: 'Fira Sans', sans-serif; 
+  font-family: "Fira Sans", sans-serif;
   font-weight: 600;
   background-color: rgba(0, 0, 0, 0.1);
   width: 4rem;
@@ -136,7 +136,7 @@
   text-align: center;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .inp_trans {
@@ -180,7 +180,7 @@
 .trans_main h3 {
   margin-left: 12%;
   text-align: left;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   color: #112e3a;
 }
 
@@ -203,7 +203,7 @@
 .btn {
   border: 0px solid;
   padding: 0.5rem 1rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   border-radius: 0.75rem;
   background-color: white;
   cursor: pointer;
@@ -271,9 +271,9 @@
   margin-bottom: 1rem;
   background-color: white;
   box-shadow: 5px 5px 10px -4px rgba(0, 0, 0, 0.52);
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 1.3rem;
-   /* max-width: 73vw; */
+  /* max-width: 73vw; */
   /* overflow: hidden; */
   /* width: auto; */
 }
@@ -317,9 +317,9 @@
   box-shadow: 0 0 10px 5px rgb(63, 63, 63);
 }
 
-.controllerTLcircle{
+.controllerTLcircle {
   background-color: rgb(255, 255, 255);
-  border:3px solid rgb(94, 118, 128);
+  border: 3px solid rgb(94, 118, 128);
   height: 5.5%;
   width: 5.5%;
   border-radius: 50%;
@@ -327,15 +327,15 @@
   top: 6.5%;
   left: 6.5%;
 }
-.controllerBRcircle{
+.controllerBRcircle {
   background-color: rgb(255, 255, 255);
-  border:3px solid rgb(94, 118, 128);
+  border: 3px solid rgb(94, 118, 128);
   height: 5.5%;
   width: 5.5%;
   border-radius: 50%;
   position: relative;
-  top:73%;
-  left:83%;
+  top: 73%;
+  left: 83%;
 }
 
 .ir_and_pc {
@@ -346,7 +346,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3rem;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 1.3rem;
 }
 
@@ -426,9 +426,9 @@
   border-width: 3px;
 }
 
-.ALUTLcircle{
+.ALUTLcircle {
   background-color: rgb(255, 255, 255);
-  border:3px solid rgb(70, 98, 98);
+  border: 3px solid rgb(70, 98, 98);
   height: 5.5%;
   width: 5.5%;
   border-radius: 50%;
@@ -436,15 +436,15 @@
   top: 83%;
   left: 6.5%;
 }
-.ALUBRcircle{
+.ALUBRcircle {
   background-color: rgb(255, 255, 255);
-  border:3px solid rgb(70, 98, 98);
+  border: 3px solid rgb(70, 98, 98);
   height: 5.5%;
   width: 5.5%;
   border-radius: 50%;
   position: relative;
-  top:0%;
-  left:83%;
+  top: 0%;
+  left: 83%;
 }
 
 .Registers-block {
@@ -469,11 +469,10 @@
   margin-bottom: auto;
   margin-right: auto;
   border-radius: 5px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 1.3rem;
 
   box-shadow: 3px 3px 2px #969696, -1px -1px 7px #ffffff;
-
 }
 
 .R1 {
@@ -484,10 +483,9 @@
   margin-bottom: auto;
   margin-left: auto;
   border-radius: 5px;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 1.3rem;
   box-shadow: 3px 3px 2px #969696, -1px -1px 7px #ffffff;
-
 }
 
 .databus {
@@ -552,7 +550,7 @@
   bottom: 5vh;
   left: 42vw;
   width: 10rem;
-  animation: memB 2s infinite linear;
+  /* animation: memB 2s infinite linear; */
 }
 #mem_datapath {
   position: absolute;
@@ -560,7 +558,7 @@
   bottom: 5vh;
   left: 78vw;
   width: 10rem;
-  animation: memB 2s infinite linear;
+  /* animation: memB 2s infinite linear; */
 }
 #aux_bus {
   position: absolute;
@@ -568,7 +566,7 @@
   top: 30vh;
   /* left: 55vw; */
   width: 15rem;
-  animation: auxB 2s infinite linear;
+  /* animation: auxB 2s infinite linear; */
   transform: rotate(90deg);
 }
 @keyframes dataflowUp {
