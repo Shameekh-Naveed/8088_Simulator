@@ -120,7 +120,20 @@ The XOR instruction can be used to reverse selected bits in an operand while pre
 
 ## Outcomes.
 
+![output 3](https://user-images.githubusercontent.com/119393518/205508536-0f85950e-1749-4220-a45d-8b8837921ef1.PNG)
+
+
+![output 4](https://user-images.githubusercontent.com/119393518/205508549-53450f01-2c2b-42fd-a244-7ba771b6d423.PNG)
+
+
+![output no 1](https://user-images.githubusercontent.com/119393518/205508580-d5ca4186-b5e4-42a9-a692-8b4454625045.PNG)
+
+![output no 2](https://user-images.githubusercontent.com/119393518/205508592-efa3dfc1-c5dc-48b9-9e9d-3242ccf99f45.PNG)
+
+
+
 ## Increament in knowledge:
+
 
 Linking UI and code. Complex problem solving owing to problems that
 developed during the creation of parsing and compiling. Github cooperation in group,
