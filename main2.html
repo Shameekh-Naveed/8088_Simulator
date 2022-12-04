@@ -13,7 +13,21 @@
       href="https://fonts.googleapis.com/css2?family=Inter&family=Oswald&family=Patrick+Hand&family=Poppins&family=Rubik+Microbe&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&family=Fira+Sans&family=Inter&family=Oswald&family=Patrick+Hand&family=Poppins&family=Roboto+Condensed&family=Rubik+Microbe&family=Solway&display=swap" rel="stylesheet">    <div class="div_main">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&family=Fira+Sans&family=Inter&family=Oswald&family=Patrick+Hand&family=Poppins&family=Roboto+Condensed&family=Rubik+Microbe&family=Solway&display=swap" rel="stylesheet">    
+    <body>
+      <div id="overlay"><div id="console">
+        <div class="header">
+          <h1 id="console_heading">Code Editor</h1>
+          <div class="smexcy_buttons">
+            <button class="smexcy" id="translateBtn">Compile</button>
+            <button class="smexcy">Clear</button>
+            <button class="smexcy" id="exitBtn">Exit</button>
+          </div>
+        </div>
+        <textarea  id="consoleText" ></textarea>
+      </div></div>
+      
+    <div class="div_main">
       <div class="reg_part">
         <div class="wrapper">
           <div class="logo_main">
@@ -62,9 +76,10 @@
         </div>
 
         <div class="inp_trans">
+          <button id="open"></button>
           <div class="input_main">
             <!-- <h3>Input</h3> -->
-            <input type="text" class="input" placeholder="Enter Command here" />
+            <input type="text" class="input" id="inputSmol" placeholder="Enter Command here" />
           </div>
 
           <div class="trans_main">

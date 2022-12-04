@@ -1,5 +1,5 @@
-function translate() {
-  machineCode = machineCoder(document.getElementsByClassName("input")[0].value);
+const translate = (instruction) => {
+  machineCode = machineCoder(instruction);
   if (machineCode == false) {
     alert("invalid instruction");
     document.getElementsByClassName("trans_text")[0].innerHTML =
@@ -17,10 +17,10 @@ function translate() {
     machineCode.REM +
     " " +
     machineCode.RM;
-}
+};
 
-function simulate() {
-  basicArithematic(
+const simulate = async () => {
+  await basicArithematic(
     machineCode.OPCODE,
     machineCode.D,
     machineCode.W,
@@ -30,10 +30,10 @@ function simulate() {
     machineCode.DISP,
     machineCode.IMM
   );
-}
+};
 
 function machineCoder(str1) {
-  let mem,reg,torf,ques,i,q1;
+  let mem, reg, torf, ques, i, q1;
   str1 = str1.toUpperCase();
   let query = str1.split(/[ ,]+/);
   let B3216 = [
@@ -192,7 +192,7 @@ function machineCoder(str1) {
   let findMOD = () => {
     let count = -1;
     let msg = false;
-    let temp,q1;
+    let temp, q1;
     for (i of query) {
       count += 1;
       if (i[0] == "[") {
@@ -968,8 +968,56 @@ const controllerWorking = async () => {
   c2.style.animation = "";
 };
 
+const openConsole = () => {
+  document.getElementById("overlay").style.display = "block";
+  document
+    .getElementById("overlay")
+    .setAttribute("class", "animated fadeInLeft");
+};
+
+const closeConsole = () => {
+  // document.getElementById("overlay").style.display = "block"
+  document
+    .getElementById("overlay")
+    .setAttribute("class", "animated fadeOutRight");
+  // clearConsole();
+};
+
+const clearConsole = () => {
+  document.getElementById("consoleText").value = "";
+};
+
+const translateText = async () => {
+  closeConsole();
+  let textArr = document.getElementById("consoleText").value.split("\n");
+  for (let i = 0; i < textArr.length; i++) {
+    const element = textArr[i];
+    document.getElementById("inputSmol").value = element;
+    // console.log({ element });
+    translate(element);
+    // document.getElementsByClassName("trans_text")[0].innerHTML = machineCode;
+    await simulate();
+  }
+  // clearConsole();
+};
+
 mountData();
 
-
-document.getElementById("translater").onclick = ()=>{translate()}
-document.getElementById("simulator").onclick = ()=>{simulate()}
+document.getElementById("translater").onclick = () => {
+  translate();
+};
+document.getElementById("simulator").onclick = () => {
+  simulate();
+};
+document.getElementById("open").onclick = () => {
+  openConsole();
+};
+document.getElementById("exitBtn").onclick = () => {
+  closeConsole();
+};
+document.getElementById("translateBtn").onclick = () => {
+  translateText();
+};
+document.querySelectorAll(".smexcy")[1].onclick = () => {
+  clearConsole();
+};
