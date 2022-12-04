@@ -75,6 +75,7 @@ function machineCoder(str1) {
 
   let MOD = { NO: "00", "8B": "01", "16B": "10", REG: "11" };
 
+  let opcode3 = { SHL: "101101", SHR: "101110", ROR: "101111", ROL: "110000" };
   let opcode1 = { MOV: "100010" };
   let opcode2 = {
     INC: "100011",
@@ -142,9 +143,9 @@ function machineCoder(str1) {
       if (formats[2] == "0" && query[2].length >= 3 && query[1][0] == "[") {
         return false;
       } else {
-        formats[7] = "";
-        for (i of query[2]) {
-          formats[7] = formats[7].concat(HEX[i]);
+        formats[7] = query[2];
+        if (formats[7].length > "2" && B8.includes(query[1])) {
+          return false;
         }
         return true;
       }
@@ -197,17 +198,15 @@ function machineCoder(str1) {
 
   let if11 = () => {
     if (formats[2] == "0") {
-      formats[4] = REG1[query[1]];
       try {
         if (REG1[query[1]] == undefined) {
           throw new Error("Not Found");
         }
         formats[4] = REG1[query[1]];
       } catch {
-        formats[4] = "000";
+        return false;
       }
 
-      formats[5] = REG1[query[2]];
       try {
         if (REG1[query[2]] == undefined) {
           throw new Error("Not Found");
@@ -224,10 +223,9 @@ function machineCoder(str1) {
         }
         formats[4] = REG2[query[1]];
       } catch {
-        formats[4] = "000";
+        return false;
       }
 
-      formats[5] = REG2[query[2]];
       try {
         if (REG2[query[2]] == undefined) {
           throw new Error("Not Found");
@@ -241,6 +239,20 @@ function machineCoder(str1) {
   };
 
   let findOP = () => {
+    if (opcode3[query[0]] != undefined) {
+      formats[0] = opcode3[query[0]];
+      if (B8.includes(query[1]) != -1 || B3216.includes(query[1] != -1)) {
+        Immediate();
+        // console.log(formats);
+        if (formats[7] != "Imm") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
     try {
       if (opcode1[query[0]] == undefined) {
         throw new Error("Not Found");
@@ -299,7 +311,7 @@ function machineCoder(str1) {
           try {
             q1[q1.length - 1] = "D8";
             mem = q1.join("+");
-            console.log(mem);
+            // console.log(mem);
             if (RM01[`[${mem}]`] == undefined) {
               throw new Error("Not Found");
             }
@@ -340,7 +352,7 @@ function machineCoder(str1) {
     }
     if (query[2][0] != "[" && query[1][0] != "[") {
       if (B3216.includes(query[1])) {
-        if (query[2] in B8) {
+        if (B8.includes(query[2])) {
           console.log("Different Size registers Not supported");
           return false;
         }
@@ -442,6 +454,60 @@ function binToHex(bin) {
   return parseInt(bin, 2).toString(16).toUpperCase();
 }
 
+function hexaSubtract(a, b) {
+  let first = hexToDec(a);
+  let second = hexToDec(b);
+  if (second > first) {
+    return false;
+  }
+  let result = first - second;
+  return decToHex(result);
+}
+
+function hexToBin(hex) {
+  let len = hex.length * 4;
+  return parseInt(hex, 16).toString(2).padStart(len, "0");
+}
+
+function SH(times, val, direction) {
+  let decVal = hexToDec(val);
+  let decTimes = hexToDec(times);
+
+  console.log({ times, val, decVal, decTimes });
+
+  if (direction == "L") {
+    return decToHex(decVal << decTimes);
+  } else {
+    return decToHex(decVal >> decTimes);
+  }
+}
+
+function rotater(times, val, direction) {
+  let binVal = hexToBin(val);
+  let decTimes = hexToDec(times);
+  let first = binVal[0];
+  let last = binVal[binVal.length - 1];
+
+  console.log({ val, times, binVal, decTimes });
+
+  if (direction == "L") {
+    for (let i = 0; i < Number(decTimes); i++) {
+      first = binVal[0];
+      binVal << "1";
+      binVal = first + binVal.slice(1, binVal.length);
+      console.log({ msg: "hr point", binVal });
+    }
+  } else {
+    for (let i = 0; i < Number(decTimes); i++) {
+      last = binVal[binVal.length - 1];
+      binVal >> "1";
+      binVal = binVal.slice(0, binVal.length - 1) + last;
+    }
+  }
+
+  return binToHex(binVal);
+}
+
 let machineCode = 0;
 let registers = {
   A: {
@@ -487,7 +553,7 @@ const setRegisters = (address, newData) => {
   for (const register in registers) {
     for (const subReg in registers[register]) {
       if (registers[register][subReg].address == address) {
-        console.log({ address, newData });
+        // console.log({ address, newData });
         registers[register][subReg].data = newData;
         return true;
       }
@@ -559,8 +625,18 @@ const mountData = () => {
 
 // Creating functions for different operations
 
-async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
-  console.log({ opcode, D, W, mod, R0, R1, disp, imm });
+async function basicArithematic(opcode, D, W, mod, R0, R1, disp, imm) {
+  console.log({
+    msg: "Machine code passed to basic arithematic",
+    opcode,
+    D,
+    W,
+    mod,
+    R0,
+    R1,
+    disp,
+    imm,
+  });
   let currentMemory = memorySegments();
   let sourceContent, destinationContent;
   let sourceContent2, destinationContent2;
@@ -572,12 +648,25 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
       sourceAddress = disp;
       destinationAddress = R0;
       destinationContent = reg1(destinationAddress);
-      sourceContent = currentMemory[sourceAddress];
+      sourceContent = currentMemory[sourceAddress].innerHTML;
     } else {
-      sourceAddress = R1;
+      sourceAddress = R0;
       destinationAddress = disp;
-      destinationContent = currentMemory[destinationAddress];
+      destinationContent = currentMemory[destinationAddress].innerHTML;
       sourceContent = reg1(sourceAddress);
+    }
+    if (W == "1") {
+      if (sourceAddress == disp) {
+        sourceContent2 = sourceContent[0] + sourceContent[1];
+        sourceContent = sourceContent[2] + sourceContent[3];
+
+        destinationAddress2 =
+          "1" + destinationAddress[1] + destinationAddress[2];
+      }
+      if (destinationAddress == disp) {
+        destinationContent2 = destinationContent[1] + destinationContent[0];
+        destinationContent = destinationContent[3] + destinationContent[2];
+      }
     }
   } else if (mod == "11") {
     if (D == "1") {
@@ -587,7 +676,8 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
       sourceContent = reg1(sourceAddress);
       if (imm != "Imm") {
         sourceAddress = null;
-        sourceContent = binToHex(imm);
+        // sourceContent = binToHex(imm);
+        sourceContent = imm;
       }
     } else {
       sourceAddress = R0;
@@ -596,23 +686,36 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
       sourceContent = reg1(sourceAddress);
       if (imm != "Imm") {
         sourceAddress = null;
-        sourceContent = binToHex(imm);
+        // sourceContent = binToHex(imm);
+        sourceContent = imm;
       }
     }
+    // console.log({ sourceContent });
     if (W == "1") {
-      sourceAddress2 = "1" + sourceAddress[1] + sourceAddress[2];
-      sourceContent2 = reg1(sourceAddress2);
+      if (sourceAddress == null) {
+        sourceContent2 = sourceContent[0] + sourceContent[1];
+        sourceContent = sourceContent[2] + sourceContent[3];
+      } else {
+        sourceAddress2 = "1" + sourceAddress[1] + sourceAddress[2];
+        sourceContent2 = reg1(sourceAddress2);
+      }
+      if (destinationAddress == null) {
+        destinationContent2 = destinationContent[1] + destinationContent[0];
+        destinationContent = destinationContent[3] + destinationContent[2];
+      } else {
+        destinationAddress2 =
+          "1" + destinationAddress[1] + destinationAddress[2];
+        destinationContent2 = reg1(destinationAddress2);
+      }
 
-      destinationAddress2 = "1" + destinationAddress[1] + destinationAddress[2];
-      destinationContent2 = reg1(destinationAddress2);
-      console.log({
-        sourceAddress2,
-        sourceAddress,
-        sourceContent2,
-        sourceContent,
-        destinationAddress2,
-        destinationContent2,
-      });
+      // console.log({
+      //   sourceAddress2,
+      //   sourceAddress,
+      //   sourceContent2,
+      //   sourceContent,
+      //   destinationAddress2,
+      //   destinationContent2,
+      // });
     }
   }
 
@@ -628,20 +731,26 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
 
   document.getElementById("pc").innerHTML = pc;
 
-  await pcToController();
+  // await pcToController();
 
   document.getElementById("ir").innerHTML = irFunc();
 
-  await irToController();
+  // await irToController();
 
   document.getElementById("R1").innerHTML = R0;
 
-  await R0ToALU();
+  // await R0ToALU();
   document.getElementById("R0").innerHTML = R1;
-  await R1ToALU();
+  // await R1ToALU();
   switch (opcode) {
     case "100010": //MOV
       console.log({ R0, sourceContent });
+      if (disp != "Disp") {
+        // currentMemory[destinationAddress].innerHTML = sourceContent;
+        memoryContent[destinationAddress] = sourceContent;
+        console.log({ currentMemory });
+        break;
+      }
       setRegisters(destinationAddress, sourceContent);
       if (W == "1") {
         setRegisters(destinationAddress2, sourceContent2);
@@ -658,7 +767,10 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
 
       break;
     case "100110": //SUB
-      setRegisters(destinationAddress, sourceContent - destinationContent);
+      setRegisters(
+        destinationAddress,
+        hexaSubtract(sourceContent, destinationContent)
+      );
       break;
     case "100111": //DEC
       setRegisters(destinationAddress, destinationContent - 1);
@@ -678,17 +790,29 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
       let resultish = hexToDec(sourceContent) ^ hexToDec(destinationContent);
       setRegisters(destinationAddress, decToHex(resultish));
       break;
-    case "1000010":
-      setRegisters(R0, sourceContent);
+    case "101101": //SHL
+      setRegisters(
+        destinationAddress,
+        SH(sourceContent, destinationContent, "L")
+      );
       break;
-    case "1000010":
-      setRegisters(R0, sourceContent);
+    case "101110": // SHR
+      setRegisters(
+        destinationAddress,
+        SH(sourceContent, destinationContent, "R")
+      );
       break;
-    case "1000010":
-      setRegisters(R0, sourceContent);
+    case "101111": // ROR
+      setRegisters(
+        destinationAddress,
+        rotater(sourceContent, destinationContent, "R")
+      );
       break;
-    case "1000010":
-      setRegisters(R0, sourceContent);
+    case "110000": //ROL
+      setRegisters(
+        destinationAddress,
+        rotater(sourceContent, destinationContent, "L")
+      );
       break;
     case "1000010":
       setRegisters(R0, sourceContent);
@@ -759,14 +883,6 @@ const R1ToALU = async () => {
   await busRun("R1_bus");
   await busRun("R0_R1_bus", 4);
 };
-
-const allAnimation = async () => {
-  await pcToController();
-  await irToController();
-  await R0ToALU();
-  await R1ToALU();
-};
-// allAnimation();
 
 function translate() {
   machineCode = machineCoder(document.getElementsByClassName("input")[0].value);

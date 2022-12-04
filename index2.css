@@ -102,6 +102,7 @@
   background-color: var(--regmemcolour);
   grid-template-columns: 45% 45%;
   gap: 1.5rem;
+  text-transform: capitalize;
 }
 
 .table-row {
@@ -551,7 +552,7 @@
   bottom: 5vh;
   left: 42vw;
   width: 10rem;
-  /* animation: memB 2s infinite linear; */
+  animation: memB 2s infinite linear;
 }
 #mem_datapath {
   position: absolute;
@@ -559,7 +560,7 @@
   bottom: 5vh;
   left: 78vw;
   width: 10rem;
-  /* animation: memB 2s infinite linear; */
+  animation: memB 2s infinite linear;
 }
 #aux_bus {
   position: absolute;
@@ -567,7 +568,7 @@
   top: 30vh;
   /* left: 55vw; */
   width: 15rem;
-  /* animation: auxB 2s infinite linear; */
+  animation: auxB 2s infinite linear;
   transform: rotate(90deg);
 }
 @keyframes dataflowUp {
