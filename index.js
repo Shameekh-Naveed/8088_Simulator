@@ -477,7 +477,7 @@ let irFunc = () => {
     machineCode.RM
   );
 };
-let  ir = "000000 00 00 000 000";
+let ir = "000000 00 00 000 000";
 
 let R0 = "0000",
   R1 = "0000";
@@ -638,7 +638,7 @@ async function basicArithematic(opcode, D, W, mod, R0, R1, disp = 0, imm) {
 
   await R0ToALU();
   document.getElementById("R0").innerHTML = R1;
-await R1ToALU();
+  await R1ToALU();
   switch (opcode) {
     case "100010": //MOV
       console.log({ R0, sourceContent });
@@ -707,6 +707,17 @@ function sleep(ms) {
 }
 
 // A function that moves the lines using animation
+
+const outerBusRun = async (busId, auxBus = 0) => {
+  let animation = "memB 2s infinite linear";
+  if (auxBus == 1) {
+    animation = "auxB 2s infinite linear";
+  }
+  let bus = document.getElementById(`${busId}`);
+  bus.style.animation = animation;
+  await sleep(2 * 1000);
+  bus.style.animation = "";
+};
 
 const busRun = async (busId, auxBus = 0) => {
   let animation = "dataflowUp 2s infinite linear";

@@ -224,6 +224,9 @@
   max-width: 74vw;
   border-radius: 10px;
   padding: 0 1rem;
+  background-color: white;
+  background-image: url("./recommended.png");
+  /* z-index: -1; */
   /* background-image: linear-gradient(0deg, #647ef1 23%, #333969 79%);   */
 }
 
@@ -249,7 +252,7 @@
 
 .memory_main {
   display: flex;
-  background-color: var(--regmemcolour);
+  /* background-color: var(--regmemcolour); */
   border: 2px solid black;
   height: max-content;
   /* align-self: center; */
@@ -257,6 +260,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
+  background-color: white;
   /* max-width: 73vw; */
   /* overflow: hidden; */
   /* width: auto; */
@@ -370,6 +374,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: white;
 }
 
 .ALU-block {
@@ -471,7 +476,31 @@
   height: 3.5rem;
   width: 10px;
   /* animation: dataflowLeftALU 1.5s infinite linear; */
+}
 
+#mem_controller {
+  position: absolute;
+  bottom: 5vh;
+  left: 42vw;
+  width: 10rem;
+  /* animation: memB 2s infinite linear; */
+}
+#mem_datapath {
+  position: absolute;
+
+  bottom: 5vh;
+  left: 78vw;
+  width: 10rem;
+  /* animation: memB 2s infinite linear; */
+}
+#aux_bus {
+  position: absolute;
+  /* bottom: 47vh; */
+  top: 30vh;
+  /* left: 55vw; */
+  width: 15rem;
+  /* animation: auxB 2s infinite linear; */
+  transform: rotate(90deg);
 }
 @keyframes dataflowUp {
   from {
@@ -511,6 +540,22 @@
   }
   to {
     right: 8.3vw;
+  }
+}
+@keyframes memB {
+  from {
+    bottom: 5vh;
+  }
+  to {
+    bottom: 40vh;
+  }
+}
+@keyframes auxB {
+  from {
+    left: 40vw;
+  }
+  to {
+    left: 65vw;
   }
 }
 
