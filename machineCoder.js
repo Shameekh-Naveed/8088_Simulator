@@ -76,6 +76,10 @@ let Immediate=()=>
         else
         {
             formats[7]=query[2]
+            if (formats[7].length>2 && B8.includes(query[1]))
+            {
+                return false
+            }
             return true;
         }
     }
