@@ -25,7 +25,7 @@ the current instruction.
 * [File names and Details](#File-names-and-Details)
 * [Structure](#Structure)
 * [Outcomes](#Outcomes)
-* [increament in knowledge](#Increament in knwoledge)
+* [Increament in knowledge](#Increament in knwoledge)
 
 ## Requirements
 To understand this project, particularly the 8086 function and how it operates and the number of bits a register accepts, knowledge of Assembly programmes and compilers is essential. You need to learn the fundamentals of assembly language in order to understand this project.
