@@ -1,11 +1,11 @@
 # 8088_Simulator
 Welcome to the 8088/8086 simulator we made as out COAL FYP
-## About the Project
-An undergraduatemajoring in computer science would benefit greatly from a good understanding
+## Project details
+An undergraduate majoring in computer science would benefit greatly from a good understanding
 of assembly language programming. Programming with assembly or lower-level
 languages provides one a highly important understanding of computer organisation and
 architecture.
-### Project Goal:
+### Project functions:
 ### TASK NO 1
 You need towrite a programwith easy to graphical use interface in the programming language
 of your choice that will simulate the behavior of 8088/8086 processor. The program should
@@ -19,18 +19,16 @@ Choose a simple circuit of 8086/88 (preferably circuit but you can also use bloc
 The simulator should also highlight the cycles or modules (like ALU,Memory etc.) used in
 the current instruction.
 ##TABLE OF CONTENTS
-* [Prerequisites](#Prerequisites)
+* [Requirements](#Requirements)
 * [8086 Information](#8086-information)
-* [Instructions](#Instructions)
-* [File names and Description](#File-names-and-Description)
-* [Frameworks](#Frameworks)
-* [Output Screenshots](#Output-Screenshots)
-* [Lessons Learnt](#Lessons-Learnt)
+* [Instructions ](#Instructions)
+* [File names and details](#File-names-and-Description)
+* [Structure](#Structure)
+* [Outcomes](#Outcomes)
+* [increament in knowledge](#Increament in knwoledge)
 
-## Prerequisites
-These programs are designed for users who are already familiar with or have some knowledge
-of assemblers. Of course, it would be quite beneficial if you were familiar with another
-programming language (such as web assembly or another)
+## Requirements
+To understand this project, particularly the 8086 function and how it operates and the number of bits a register accepts, knowledge of Assembly programmes and compilers is essential. You need to learn the fundamentals of assembly language in order to understand this project.
 ## 8086 Information
 
 
@@ -48,8 +46,14 @@ memory resulting in faster processing.
 and 16-bit external data bus resulting in faster processing.
 
 
-## File names and Description:
+## File names and details:
 The following is a list of filenames along with their description.
+
+## Structure:
+
+• Javascript.
+• HTML
+• CSS
 
 ## Instructions:
 #### ROL
@@ -101,15 +105,11 @@ And reg,reg And reg,mem And reg,imm
 Performs a bit-wise xor of the two operands, and stores the result in destination. variations:
 Xor reg,reg, Xor mem,reg, Xor reg,mem, Xor reg,imm.
 
-## Frameworks
 
-• Javascript.
-• HTML
-• CSS
 
-## Output screenshots:
+## Outcomes.
 
-## Lessons learnt:
+## Increament in knowledge:
 
 Linking UI and code. Complex problem solving owing to problems that
 developed during the creation of parsing and compiling. Github cooperation in group,
