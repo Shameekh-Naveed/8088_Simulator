@@ -1,4 +1,4 @@
-str1="mov ch,dh"
+str1="inc [BX],2"
 str1=str1.toUpperCase()
 query=str1.split(/[ ,]+/);
 let B3216=["EAX","EBX","ECX","EDX","AX","BX","CX","DX","BP","SI","DI"]
@@ -71,20 +71,20 @@ let Immediate=()=>
     {
         if (formats[2]=="0" && (query[2].length)>=3 && query[1][0]=="[")
         {
-            return false
+            return {status:false,error:"Input Size greater than memory"}
         }
         else
         {
             formats[7]=query[2]
-            if (formats[7].length>2 && B8.includes(query[1]))
+            if(formats[7].length>2 && B8.includes(query[1]))
             {
-                return false
+                return {status:false,error:"Size of data greater than Input"}
             }
-            return true;
+            return {status:true};
         }
     }
 
-    return true
+    return {status:true};
 }
 
 
@@ -146,14 +146,13 @@ let findMOD=()=>
     {
         formats[3]=MOD["REG"]
     }
-    return true
+    return {status:true}
 }
 
 let if11=()=>
 {
     if (formats[2]=="0")
     {
-        formats[4]=REG1[query[1]]
         try{
             if (REG1[query[1]]==undefined)
             {
@@ -161,11 +160,11 @@ let if11=()=>
             }
             formats[4]=REG1[query[1]]
         }
-        catch{
-            formats[4]="000"
+        catch
+        {
+            return {status:false,error:"Invalid register"}
         }
 
-        formats[5]=REG1[query[2]]
         try{
             if (REG1[query[2]]==undefined)
             {
@@ -180,7 +179,6 @@ let if11=()=>
     }
     else
     {
-        formats[4]=REG2[query[1]]
         try{
             if (REG2[query[1]]==undefined)
             {
@@ -189,7 +187,7 @@ let if11=()=>
             formats[4]=REG2[query[1]]
         }
         catch{
-            formats[4]="000"
+            return {status:false,error:"Invalid register"};
         }
 
         formats[5]=REG2[query[2]]
@@ -205,7 +203,7 @@ let if11=()=>
         }
 
     }
-    return true;
+    return {status:true};
 }
 
 let findOP=()=>
@@ -219,16 +217,16 @@ let findOP=()=>
             console.log(formats)
             if (formats[7]!="Imm")
             {
-                return true
+                return {status:true};
             }
             else
             {
-                return false
+                return {status:false,error:"Invalid register"};
             }
         }
         else
         {
-            return false
+            return {status:false,error:"Invalid register"};
         }
     }
     try
@@ -251,10 +249,10 @@ let findOP=()=>
         }
         catch
         {
-            return false
+            return {status:false,error:"Invalid register"};
         }
     }
-    return true
+    return {status:true};
 }
 
 let ifnot11=()=>
@@ -275,7 +273,7 @@ let ifnot11=()=>
         {
             if (REG2[reg]==undefined)
             {
-                return false
+                return {status:false,error:"Invalid register"};
             }
             formats[4]=REG2[reg]
         }
@@ -328,7 +326,7 @@ let ifnot11=()=>
                 }
                 catch
                 {
-                    return false;
+                    return {status:false,error:"Invalid register"};
                 }
             }
         }
@@ -356,32 +354,31 @@ let ifnot11=()=>
                 }
                 catch
                 {
-                    return false;
+                    return {status:false,error:"Invalid register"};
                 }
             }
         }
     }
-    return true
+    return {status:true};
 }
 
 let error=()=>
 {
     if (query[2][0]=="[" && B8.includes(query[1]))
     {
-        return false
+        return {status:false,error:"Memory address greater than register Size"};
     }
     if (query[2][0]=="[" && query[1][0]=="[")
     {
-        return false
+        return {status:false,error:"Memory to memry transfer Not possible"};
     }
     if (query[2][0]!="[" && query[1][0]!="[")
     {
         if (B3216.includes(query[1]))
         {   
-            if (query[2] in B8)
+            if (B8.includes(query[2]))
             {
-                console.log("Different Size registers Not supported")
-                return false
+                return {status:false,error:"Different Size register not supported"};
             }
         }   
     }
@@ -389,27 +386,27 @@ let error=()=>
     {
         if (B3216.includes(query[2]))
         {
-            console.log("Different Size registers Not supported")
-            return false
+            return {status:false,error:"Different Size register not supported"};
         }
     }
-    return true
+    return {status:true};
 }
 
 
 let machinecode=()=>
 {
-    if(error()){
+    err=error()
+    if(err["status"]){
         let t=findOP()
-        if (t)
+        if (t["status"])
         {
             findD()
             findW()
             torf=findMOD();
-            if (torf)
+            if (torf["status"])
             {
                 ques=Immediate()
-                if (ques)
+                if (ques["status"])
                 {
                     if (formats[3]=="11")
                     {
@@ -427,8 +424,7 @@ let machinecode=()=>
                     {
                         formats[5]="000"
                     }
-                    if (formats)
-                    if (q1)
+                    if (q1["status"])
                     {
                         mem={OPCODE:"",D:"",W:"",MOD:"",REM:"",RM:"",DISP:"",IMM:""}
                         let count=0
@@ -441,27 +437,27 @@ let machinecode=()=>
                     }
                     else
                     {
-                        return false
+                        return q1
                     }
                 }
                 else
                 {
-                    return false
+                    return ques
                 }
             }
             else
             {
-                return false
+                return torf
             }
         }
         else
         {
-            return false
+            return t
         }
     }
     else
     {
-        return false;
+        return err;
     }
 }
 
